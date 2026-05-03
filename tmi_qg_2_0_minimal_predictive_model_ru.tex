@@ -1,0 +1,820 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{microtype}
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\setlength{\emergencystretch}{3em}
+\sloppy
+
+\newcommand{\statementbox}[1]{%
+\begin{center}%
+\fbox{\begin{minipage}{0.88\linewidth}\centering #1\end{minipage}}%
+\end{center}%
+}
+
+\DeclareMathOperator{\Adm}{Adm}
+\DeclareMathOperator{\Struct}{Struct}
+\DeclareMathOperator{\Dist}{Dist}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\SE}{SE}
+\DeclareMathOperator{\CI}{CI}
+
+\newcommand{\TMI}{\mathcal T_{\mathrm{MI}}}
+\newcommand{\TMIRQG}{\mathcal T_{\mathrm{MI\text{-}QG}}}
+\newcommand{\M}{\mathcal M_U}
+\newcommand{\Gspace}{\mathfrak G}
+\newcommand{\Hilb}{\mathcal H}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Eff}{\mathrm{eff}}
+\newcommand{\std}{\mathrm{std}}
+\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\MIphys}{\mathcal M_I^{\mathrm{phys}}}
+\newcommand{\Unc}{\mathcal U}
+
+\title{\textbf{Теория многообразных интерфейсов}\\
+\large TMI-QG-2.0: минимальная предсказательная модель\\
+\large интерфейсной геометрической декогеренции}
+\author{Рабочая публикационная TEX-версия}
+\date{Версия: 2.0 draft}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Данный текст собирает минимальную предсказательную версию квантово-гравитационного слоя Теории многообразных интерфейсов. Модель не претендует на завершённую квантовую гравитацию и не выводит Стандартную модель. Её задача скромнее и строже: сформулировать эффективный интерфейсно-полевой механизм геометрической декогеренции, в котором различимость геометрических альтернатив создаёт дополнительный вклад в скорость подавления когерентности. Центральное предсказание имеет вид
+\[
+\Delta\Gamma_I
+=
+\Gamma_{\obs}-\Gamma_{\std}
+=
+\kappa_I |c_1|^2 |c_2|^2
+\ln^2\!\left(\frac{a_1}{a_2}\right).
+\]
+Тем самым TMI-QG-2.0 задаёт проверяемую гипотезу: если существует интерфейсный канал геометрической декогеренции, наблюдаемая добавка к стандартной декогеренции должна масштабироваться с интерфейсным геометрическим контрастом
+\[
+x_I=|c_1|^2|c_2|^2\ln^2\!\left(\frac{a_1}{a_2}\right).
+\]
+Если такая зависимость отсутствует, минимальная версия модели отклоняется или требует модификации.
+\end{abstract}
+
+\tableofcontents
+
+\section{Статус версии}
+
+\statementbox{TMI-QG-2.0 --- это не готовая теория всего и не завершённая квантовая гравитация, а минимальная эффективная модель интерфейсной геометрической декогеренции.}
+
+Текст фиксирует переход от общей архитектуры Теории многообразных интерфейсов к первой проверяемой модели. Центральная физическая цепочка имеет вид
+\[
+g
+\Rightarrow
+\Adm_c(g)
+\Rightarrow
+\Hilb_I(g)
+\Rightarrow
+\Psi_I
+\Rightarrow
+\Dist_{\mathrm{poss}}(\Psi_I;g)
+\Rightarrow
+\Struct_I.
+\]
+Её смысл:
+\[
+\boxed{\text{геометрия задаёт допустимость;}}
+\]
+\[
+\boxed{\text{квантовое состояние задаёт распределение возможностей;}}
+\]
+\[
+\boxed{\text{интерфейс переводит распределение возможностей в структуру.}}
+\]
+
+В версии 2.0 эта цепочка уплотняется до предсказательной модели:
+\[
+(a_1,a_2,c_1,c_2,\kappa_I)
+\Rightarrow
+\Gamma_I
+\Rightarrow
+C_{\mathrm{TMI}}(t)
+\Rightarrow
+\Struct_I(t)
+\Rightarrow
+\text{статистический тест}.
+\]
+
+\section{Аксиоматическое ядро минимальной модели}
+
+\subsection{Аксиома геометрической допустимости}
+
+Пусть \(g_{\mu\nu}\) --- метрика на пространстве-времени \(\M\). Тогда метрика задаёт причинную структуру и множество допустимых причинных переходов:
+\[
+g
+\Rightarrow
+\mathcal C^+_{I,g}(x)
+\Rightarrow
+J_g^+(x)
+\Rightarrow
+\Adm_c(g).
+\]
+Здесь
+\[
+\mathcal C^{+}_{I,g}(x)
+:=
+\{v\in T_x\M\setminus\{0\}\mid g_x(v,v)\leq 0,\ v\ \text{направлен в будущее}\}
+\]
+--- интерфейсная запись будущего причинного конуса. Его граница совпадает со световым конусом стандартной лоренцевой геометрии:
+\[
+\partial\mathcal C^{+}_{I,g}(x)
+\equiv
+\mathcal C^{+}_{\mathrm{light},g}(x).
+\]
+
+\subsection{Аксиома квантового распределения возможностей}
+
+Для фиксированной геометрии \(g\) интерфейсное пространство возможностей задаётся как
+\[
+\Hilb_I(g)=L^2\bigl(\Adm_c(g),\mathcal B_g,\mu_g\bigr),
+\]
+где \(\mathcal B_g\) --- выбранная \(\sigma\)-алгебра, а \(\mu_g\) --- эффективная или регуляризованная мера на пространстве допустимых переходов. Квантовое состояние
+\[
+\Psi_I\in \Hilb_I(g)
+\]
+задаёт распределение возможностей:
+\[
+d\Prob_{\Psi,g}(\Phi)=|\psi_I(\Phi)|^2d\mu_g(\Phi).
+\]
+
+\subsection{Аксиома интерфейсной структуризации}
+
+Интерфейс переводит распределение возможностей в структуру:
+\[
+I_Q:
+\Dist_{\mathrm{poss}}(\Psi_I;g)
+\longrightarrow
+\Struct_I.
+\]
+Операционально это может быть записано как квантовый канал:
+\[
+\mathcal E_I(\rho)=\sum_k K_k^{(I)}\rho K_k^{(I)\dagger},
+\qquad
+\sum_k K_k^{(I)\dagger}K_k^{(I)}=\mathbf 1.
+\]
+В пределе полной редукции:
+\[
+\rho'_I\approx \sum_k p_k |s_k\rangle\langle s_k|,
+\qquad
+p_k=\Tr(E_k^{(I)}\rho),
+\qquad
+E_k^{(I)}=K_k^{(I)\dagger}K_k^{(I)}.
+\]
+
+\section{Минимальная двухгеометрическая модель}
+
+\subsection{Две геометрические альтернативы}
+
+Пусть есть две допустимые геометрические конфигурации:
+\[
+|g_1\rangle,
+\qquad
+|g_2\rangle.
+\]
+Они образуют минимальное пространство альтернатив:
+\[
+\Hilb_g^{(2)}=\operatorname{span}\{|g_1\rangle,|g_2\rangle\}.
+\]
+Для первой модели предполагаем ортонормированность:
+\[
+\langle g_i|g_j\rangle=\delta_{ij}.
+\]
+
+Квантовое состояние геометрии:
+\[
+|\Psi_g\rangle=c_1|g_1\rangle+c_2|g_2\rangle,
+\qquad
+|c_1|^2+|c_2|^2=1.
+\]
+
+Матрица плотности:
+\[
+\rho_g(0)=|\Psi_g\rangle\langle\Psi_g|
+=
+\begin{pmatrix}
+|c_1|^2 & c_1\overline{c_2}\\
+c_2\overline{c_1} & |c_2|^2
+\end{pmatrix}.
+\]
+Диагональные элементы задают вероятности, а недиагональные элементы \(\rho_{12}\) и \(\rho_{21}\) задают геометрическую когерентность.
+
+\subsection{Интерфейсная декогеренция}
+
+Вводим коэффициент сохранения когерентности \(\eta_I(t)\):
+\[
+\rho_{12}(t)=\eta_I(t)\rho_{12}(0).
+\]
+Если \(0\leq\eta_I(t)\leq1\), то
+\[
+\rho_g(t)=
+\begin{pmatrix}
+|c_1|^2 & \eta_I(t)c_1\overline{c_2}\\
+\eta_I(t)c_2\overline{c_1} & |c_2|^2
+\end{pmatrix}.
+\]
+
+Скорость интерфейсной декогеренции определяется как \(\Gamma_I(t)\geq0\):
+\[
+\eta_I(t)=\exp\left(-\int_0^t\Gamma_I(s)ds\right).
+\]
+В постоянном случае:
+\[
+\eta_I(t)=e^{-\Gamma_I t},
+\qquad
+|\rho_{12}(t)|=e^{-\Gamma_I t}|\rho_{12}(0)|.
+\]
+
+\subsection{Степень структурирования}
+
+Минимальная степень структурирования:
+\[
+\Struct_I(t):=1-\frac{|\rho_{12}(t)|}{|\rho_{12}(0)|}.
+\]
+Следовательно,
+\[
+\Struct_I(t)=1-\eta_I(t),
+\]
+а при постоянной скорости:
+\[
+\boxed{
+\Struct_I(t)=1-e^{-\Gamma_I t}.
+}
+\]
+
+\section{Действие интерфейсного поля}
+
+\subsection{Минимальная система}
+
+Минимальная физическая система:
+\[
+(g_{\mu\nu},\Psi_g,\chi_I),
+\]
+где \(\chi_I\) --- эффективное интерфейсное поле. Полное действие:
+\[
+S_{\mathrm{TMI}}
+=
+S_{\mathrm{GR}}[g]
++
+S_Q[\Psi_g,g]
++
+S_I[\chi_I,g]
++
+S_{\mathrm{int}}[\chi_I,\Psi_g,g].
+\]
+
+Гравитационная часть:
+\[
+S_{\mathrm{GR}}[g]
+=
+\frac{c^4}{16\pi G}
+\int_{\M}R\sqrt{-g}\,d^4x.
+\]
+
+\subsection{Лагранжиан интерфейсного поля}
+
+В минимальной версии \(\chi_I:\M\to\mathbb R\) --- вещественное скалярное поле. Его лагранжиан:
+\[
+\Lag_\chi
+=
+-
+\frac12g^{\mu\nu}\nabla_\mu\chi_I\nabla_\nu\chi_I
+-
+\frac12m_I^2\chi_I^2
+-
+\frac{\beta_I}{4}\chi_I^4
+-
+\frac12\xi_I R\chi_I^2
++
+J_I\chi_I.
+\]
+Здесь \(m_I\) --- масштаб интерфейсного поля, \(\beta_I\) --- самодействие, \(\xi_I\) --- связь с кривизной, \(J_I\) --- источник интерфейсного поля.
+
+Уравнение движения:
+\[
+\boxed{
+\Box_g\chi_I
+-
+(m_I^2+\xi_I R)\chi_I
+-
+\beta_I\chi_I^3
+=
+-J_I.
+}
+\]
+
+\subsection{Источник интерфейсного поля}
+
+Интерфейсный контраст для двух геометрий задаётся мягкой нормализованной формой:
+\[
+D_g(\Psi_g)=|c_1||c_2|d_I(g_1,g_2).
+\]
+Источник:
+\[
+J_I=\alpha_I D_g(\Psi_g).
+\]
+
+В стационарном слабополевом приближении:
+\[
+\nabla_\mu\chi_I\approx0,
+\qquad
+R\approx0,
+\qquad
+\beta_I\approx0.
+\]
+Тогда:
+\[
+\chi_I=\frac{J_I}{m_I^2}=\frac{\alpha_I}{m_I^2}D_g(\Psi_g).
+\]
+Если
+\[
+\Gamma_I=\lambda_I\chi_I^2,
+\]
+то
+\[
+\boxed{
+\Gamma_I
+=
+\frac{\lambda_I\alpha_I^2}{m_I^4}
+|c_1|^2|c_2|^2d_I^2(g_1,g_2).
+}
+\]
+
+\section{Интерфейсное расстояние между геометриями}
+
+\subsection{Общее эффективное определение}
+
+Строго сравнивать нужно не координатные записи метрик, а классы геометрий:
+\[
+[g]=\{\varphi^*g\mid \varphi\in\Diff(\M)\}.
+\]
+Эффективное интерфейсное расстояние:
+\[
+\boxed{
+d_I([g_1],[g_2])
+=
+\frac{1}{\mathcal N_I}
+\inf_{\varphi\in\Diff(\M)}
+\left[
+\int_\Omega
+w_I(x)
+\left\|g_1-\varphi^*g_2\right\|_{g_0}^2
+ dV_{g_0}
+\right]^{1/2}.
+}
+\]
+Здесь \(w_I(x)\geq0\) --- интерфейсный вес, \(g_0\) --- регуляризующая фоновая структура, \(\mathcal N_I\) --- нормировка.
+
+\subsection{Минисуперпространственная toy-модель}
+
+Для первого вычислимого случая геометрия задаётся масштабным фактором \(a\):
+\[
+g_1=g(a_1),
+\qquad
+ g_2=g(a_2).
+\]
+Вводим
+\[
+\boxed{
+d_I(g(a_1),g(a_2))=\frac{|\ln(a_1/a_2)|}{\sigma_a}.
+}
+\]
+Тогда
+\[
+\Gamma_I
+=
+\frac{\lambda_I\alpha_I^2}{m_I^4\sigma_a^2}
+|c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+\]
+Обозначим
+\[
+\kappa_I=\frac{\lambda_I\alpha_I^2}{m_I^4\sigma_a^2}.
+\]
+Тогда центральная скорость модели:
+\[
+\boxed{
+\Gamma_I
+=
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+
+\section{Главное предсказание модели}
+
+Нормированная когерентность:
+\[
+C_I(t)=\frac{|\rho_{12}(t)|}{|\rho_{12}(0)|}.
+\]
+Тогда
+\[
+\boxed{
+C_I(t)=
+\exp\left[-
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right)t
+\right].
+}
+\]
+
+Для максимальной суперпозиции \(|c_1|^2=|c_2|^2=1/2\):
+\[
+\boxed{
+\Gamma_I=\frac{\kappa_I}{4}\ln^2\left(\frac{a_1}{a_2}\right),
+\qquad
+C_I(t)=\exp\left[-\frac{\kappa_I}{4}\ln^2\left(\frac{a_1}{a_2}\right)t\right].
+}
+\]
+
+Характерное время интерфейсной декогеренции:
+\[
+\boxed{
+\tau_I=\frac{1}{\Gamma_I}
+=
+\frac{1}{\kappa_I |c_1|^2|c_2|^2\ln^2(a_1/a_2)}.
+}
+\]
+
+\section{Численный пример}
+
+Берём максимальную суперпозицию и \(\kappa_I=1\). Тогда
+\[
+\Gamma_I=\frac14\ln^2(a_1/a_2).
+\]
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(a_1/a_2\) & \(\ln(a_1/a_2)\) & \(\Gamma_I\) & \(\tau_I=1/\Gamma_I\)\\
+\midrule
+2 & 0.693 & 0.120 & 8.32\\
+10 & 2.303 & 1.326 & 0.754\\
+100 & 4.605 & 5.302 & 0.189\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Для \(C_I(t)=e^{-\Gamma_I t}\):
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(t\) & \(a_1/a_2=2\) & \(a_1/a_2=10\) & \(a_1/a_2=100\)\\
+\midrule
+0 & 1.000 & 1.000 & 1.000\\
+0.5 & 0.942 & 0.515 & 0.071\\
+1 & 0.887 & 0.265 & 0.005\\
+2 & 0.786 & 0.071 & 0.000025\\
+5 & 0.548 & 0.0013 & \(\approx0\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Вывод:
+\[
+\boxed{
+\text{интерфейсная декогеренция усиливается как квадрат логарифма отношения масштабов геометрий.}
+}
+\]
+
+\section{Сравнение со стандартной декогеренцией}
+
+Пусть стандартная декогеренция имеет скорость \(\Gamma_{\std}\):
+\[
+C_{\std}(t)=e^{-\Gamma_{\std}t}.
+\]
+TMI добавляет интерфейсную скорость:
+\[
+\Gamma_{\mathrm{total}}=\Gamma_{\std}+\Gamma_I.
+\]
+Следовательно,
+\[
+C_{\mathrm{TMI}}(t)=e^{-(\Gamma_{\std}+\Gamma_I)t}.
+\]
+Относительное отличие:
+\[
+\frac{C_{\mathrm{TMI}}(t)}{C_{\std}(t)}=e^{-\Gamma_I t}.
+\]
+Избыточное подавление когерентности:
+\[
+\boxed{
+\Delta_I(t)=1-e^{-\Gamma_I t}.
+}
+\]
+
+В минисуперпространственной модели:
+\[
+\boxed{
+\Delta_I(t)=1-
+\exp\left[-
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right)t
+\right].
+}
+\]
+
+\section{Наблюдаемая величина и гипотезы}
+
+Главная наблюдаемая добавка:
+\[
+\Delta\Gamma_I=\Gamma_{\obs}-\Gamma_{\std}.
+\]
+Интерфейсный параметр геометрического контраста:
+\[
+\boxed{
+x_I:=|c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+Тогда предсказание TMI-QG:
+\[
+\boxed{
+\Delta\Gamma_I=\kappa_I x_I.
+}
+\]
+
+Нулевая гипотеза:
+\[
+\boxed{H_0:\ \kappa_I=0.}
+\]
+Гипотеза TMI:
+\[
+\boxed{H_{\mathrm{TMI}}:\ \kappa_I>0.}
+\]
+Или полностью:
+\[
+\boxed{
+H_{\mathrm{TMI}}:
+\Gamma_{\obs}
+=
+\Gamma_{\std}
++
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+
+Минимальная версия опровергается, если при достаточной точности
+\[
+\Gamma_{\obs}-\Gamma_{\std}=0
+\]
+для значимых \(a_1/a_2\neq1\), либо если зависимость не масштабируется как \(x_I\).
+
+\section{Синтетический проверочный датасет}
+
+Берём
+\[
+|c_1|^2=|c_2|^2=\frac12,
+\qquad
+\kappa_I=0.5,
+\qquad
+\Gamma_{\std}=0.1.
+\]
+Тогда
+\[
+x_I=\frac14\ln^2(a_1/a_2),
+\qquad
+\Delta\Gamma_I=0.5x_I,
+\qquad
+\Gamma_{\obs}=0.1+0.5x_I.
+\]
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+\(a_1/a_2\) & \(\ln(a_1/a_2)\) & \(x_I\) & \(\Delta\Gamma_I\) & \(\Gamma_{\obs}\)\\
+\midrule
+1 & 0.000 & 0.000 & 0.000 & 0.100\\
+2 & 0.693 & 0.120 & 0.060 & 0.160\\
+5 & 1.609 & 0.648 & 0.324 & 0.424\\
+10 & 2.303 & 1.325 & 0.663 & 0.763\\
+50 & 3.912 & 3.826 & 1.913 & 2.013\\
+100 & 4.605 & 5.302 & 2.651 & 2.751\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Когерентность при \(t=1\):
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(a_1/a_2\) & \(C_{\std}(1)\) & \(C_{\mathrm{TMI}}(1)\) & \(\Delta_I(1)\)\\
+\midrule
+1 & 0.905 & 0.905 & 0.000\\
+2 & 0.905 & 0.852 & 0.058\\
+5 & 0.905 & 0.655 & 0.277\\
+10 & 0.905 & 0.466 & 0.485\\
+50 & 0.905 & 0.134 & 0.852\\
+100 & 0.905 & 0.064 & 0.929\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Статистическая форма проверки}
+
+Для набора сценариев \(i=1,\dots,n\) вводим
+\[
+x_I^{(i)}=|c_1^{(i)}|^2|c_2^{(i)}|^2
+\ln^2\left(\frac{a_1^{(i)}}{a_2^{(i)}}\right),
+\]
+\[
+y_i=\Delta\Gamma^{(i)}=\Gamma_{\obs}^{(i)}-\Gamma_{\std}^{(i)}.
+\]
+Минимальная статистическая модель:
+\[
+\boxed{
+y_i=\kappa_I x_I^{(i)}+\varepsilon_i,
+\qquad
+\mathbb E[\varepsilon_i]=0.
+}
+\]
+
+Если ошибки имеют дисперсии \(\sigma_i^2\), то веса
+\[
+w_i=\frac{1}{\sigma_i^2}.
+\]
+Оценка коэффициента:
+\[
+\boxed{
+\hat\kappa_I=
+\frac{\sum_{i=1}^n w_i x_I^{(i)}y_i}{\sum_{i=1}^n w_i(x_I^{(i)})^2}.
+}
+\]
+Стандартная ошибка:
+\[
+\boxed{
+\SE(\hat\kappa_I)=
+\left(\sum_{i=1}^n w_i(x_I^{(i)})^2\right)^{-1/2}.
+}
+\]
+Критерий поддержки:
+\[
+\boxed{
+\hat\kappa_I>0
+\quad\text{и}\quad
+0\notin \CI(\hat\kappa_I).
+}
+\]
+При приблизительном 95\% критерии:
+\[
+\boxed{
+\hat\kappa_I-1.96\,\SE(\hat\kappa_I)>0.
+}
+\]
+
+\section{Границы применимости}
+
+\subsection{Что модель уже даёт}
+
+Модель уже даёт:
+\begin{enumerate}[label=\arabic*.]
+\item вычислимую величину \(\Gamma_I\);
+\item закон подавления когерентности \(|\rho_{12}(t)|=e^{-\Gamma_I t}|\rho_{12}(0)|\);
+\item отличие от стандартной декогеренции;
+\item фальсифицируемую гипотезу \(\Delta\Gamma_I\propto x_I\);
+\item статистическую форму проверки.
+\end{enumerate}
+
+\subsection{Что модель пока не доказывает}
+
+Модель не доказывает:
+\begin{enumerate}[label=\arabic*.]
+\item полную квантовую гравитацию;
+\item вывод Стандартной модели \(SU(3)\times SU(2)\times U(1)\);
+\item фундаментальное происхождение всех масс, зарядов и поколений частиц;
+\item построение полной меры \(\mu_G\) на пространстве геометрий;
+\item общую формулу расстояния между произвольными геометриями;
+\item универсальный механизм коллапса волновой функции.
+\end{enumerate}
+
+\subsection{Феноменологические параметры}
+
+Коэффициент \(\kappa_I\) в текущей версии является эффективным параметром:
+\[
+\boxed{
+\kappa_I\ \text{пока не выведен из фундаментальных констант.}
+}
+\]
+Более строгая версия должна получить
+\[
+\kappa_I=f(\lambda_I,\alpha_I,m_I,\sigma_a,\ldots)
+\]
+или глубже:
+\[
+\kappa_I=f(S_I,\chi_I,g,\Psi).
+\]
+
+\subsection{Проблема меры}
+
+Мера \(\mu_G\) на пространстве геометрий в текущей версии предполагается эффективной или регуляризованной. Возможные будущие варианты:
+\begin{enumerate}[label=\arabic*.]
+\item дискретная мера;
+\item минисуперпространственная мера;
+\item цилиндрическая мера;
+\item эффективная path-integral мера.
+\end{enumerate}
+
+\section{Итоговая формулировка TMI-QG-2.0}
+
+\statementbox{Минимальная модель TMI-QG предсказывает дополнительный геометрически-зависимый вклад в скорость декогеренции, возникающий из интерфейсного различия геометрических альтернатив.}
+
+Главная формула:
+\[
+\boxed{
+\Delta\Gamma_I
+=
+\Gamma_{\obs}-\Gamma_{\std}
+=
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+Главная проверяемая зависимость:
+\[
+\boxed{
+\Delta\Gamma_I=\kappa_I x_I,
+\qquad
+x_I=|c_1|^2|c_2|^2\ln^2(a_1/a_2).
+}
+\]
+Главная статистическая гипотеза:
+\[
+\boxed{H_0:\kappa_I=0,
+\qquad
+H_{\mathrm{TMI}}:\kappa_I>0.}
+\]
+
+Правильный научный статус:
+\[
+\boxed{
+\text{TMI-QG предлагает интерфейсно-полевой механизм геометрической декогеренции.}
+}
+\]
+
+Неправильный статус:
+\[
+\boxed{
+\text{TMI-QG не должна подаваться как завершённая теория квантовой гравитации или теория всего.}
+}
+\]
+
+\section{Короткая аннотация для публикации}
+
+Минимальная версия TMI-QG формулирует эффективный интерфейсно-полевой механизм геометрической декогеренции. В двухгеометрическом минисуперпространственном приближении квантовая геометрия задаётся состоянием
+\[
+|\Psi_g\rangle=c_1|g(a_1)\rangle+c_2|g(a_2)\rangle.
+\]
+Интерфейсный геометрический контраст определяется как
+\[
+x_I=|c_1|^2|c_2|^2\ln^2(a_1/a_2).
+\]
+Модель предсказывает дополнительную добавку к скорости декогеренции:
+\[
+\Delta\Gamma_I=\kappa_I x_I.
+\]
+Следовательно,
+\[
+C_{\mathrm{TMI}}(t)
+=
+\exp[-(\Gamma_{\std}+\kappa_I x_I)t].
+\]
+Модель фальсифицируема: если наблюдаемая добавка \(\Gamma_{\obs}-\Gamma_{\std}\) не имеет положительной линейной зависимости от \(x_I\), минимальная версия интерфейсного канала геометрической декогеренции отклоняется или требует модификации.
+
+\section{Следующий этап}
+
+После TMI-QG-2.0 естественные следующие шаги:
+\begin{enumerate}[label=\arabic*.]
+\item построить более строгую меру \(\mu_G\) или явно зафиксировать регуляризацию;
+\item перейти от двух геометрий к \(N\)-геометрической и непрерывной модели;
+\item вывести \(\kappa_I\) из более фундаментального действия \(S_I[\chi_I,g,\Psi]\);
+\item построить численную toy-модель с конкретным потенциалом \(U_{\mathrm{mini}}(a)\);
+\item сравнить предсказания с Wheeler--DeWitt, стандартной декогеренцией, path-integral подходами, semiclassical gravity и LQG;
+\item отделить физическую TMI-QG ветку от математической ветки категории интерфейсов.
+\end{enumerate}
+
+\end{document}

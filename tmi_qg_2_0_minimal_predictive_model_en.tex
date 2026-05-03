@@ -1,0 +1,819 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{microtype}
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\setlength{\emergencystretch}{3em}
+\sloppy
+
+\newcommand{\statementbox}[1]{%
+\begin{center}%
+\fbox{\begin{minipage}{0.88\linewidth}\centering #1\end{minipage}}%
+\end{center}%
+}
+
+\DeclareMathOperator{\Adm}{Adm}
+\DeclareMathOperator{\Struct}{Struct}
+\DeclareMathOperator{\Dist}{Dist}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\SE}{SE}
+\DeclareMathOperator{\CI}{CI}
+
+\newcommand{\TMI}{\mathcal T_{\mathrm{MI}}}
+\newcommand{\TMIRQG}{\mathcal T_{\mathrm{MI\text{-}QG}}}
+\newcommand{\M}{\mathcal M_U}
+\newcommand{\Gspace}{\mathfrak G}
+\newcommand{\Hilb}{\mathcal H}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Eff}{\mathrm{eff}}
+\newcommand{\std}{\mathrm{std}}
+\newcommand{\obs}{\mathrm{obs}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\MIphys}{\mathcal M_I^{\mathrm{phys}}}
+\newcommand{\Unc}{\mathcal U}
+
+\title{\textbf{Theory of Manifold Interfaces}\\
+\large TMI-QG-2.0: A Minimal Predictive Model\\
+\large of Interface-Induced Geometric Decoherence}
+\author{Working publication-oriented TEX version}
+\date{Version: 2.0 draft}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This text assembles the minimal predictive version of the quantum-gravitational layer of the Theory of Manifold Interfaces. The model does not claim to be a completed theory of quantum gravity and does not derive the Standard Model. Its task is more modest and more precise: to formulate an effective interface-field mechanism of geometric decoherence, in which the distinguishability of geometric alternatives generates an additional contribution to the decoherence rate. The central prediction is
+\[
+\Delta\Gamma_I
+=
+\Gamma_{\obs}-\Gamma_{\std}
+=
+\kappa_I |c_1|^2 |c_2|^2
+\ln^2\!\left(\frac{a_1}{a_2}\right).
+\]
+Thus TMI-QG-2.0 defines a testable hypothesis: if an interface channel of geometric decoherence exists, the observed excess over standard decoherence should scale with the interface geometric contrast
+\[
+x_I=|c_1|^2|c_2|^2\ln^2\!\left(\frac{a_1}{a_2}\right).
+\]
+If such dependence is absent, the minimal version of the model is rejected or requires modification.
+\end{abstract}
+
+\tableofcontents
+
+\section{Status of the version}
+
+\statementbox{TMI-QG-2.0 is not a final Theory of Everything and not a completed theory of quantum gravity. It is a minimal effective model of interface-induced geometric decoherence.}
+
+The text fixes the transition from the general architecture of the Theory of Manifold Interfaces to its first testable model. The central physical chain is
+\[
+g
+\Rightarrow
+\Adm_c(g)
+\Rightarrow
+\Hilb_I(g)
+\Rightarrow
+\Psi_I
+\Rightarrow
+\Dist_{\mathrm{poss}}(\Psi_I;g)
+\Rightarrow
+\Struct_I.
+\]
+Its meaning is
+\[
+\boxed{\text{geometry defines admissibility;}}
+\]
+\[
+\boxed{\text{the quantum state defines the distribution of possibilities;}}
+\]
+\[
+\boxed{\text{the interface transforms the distribution of possibilities into structure.}}
+\]
+
+In version 2.0 this chain is compressed into a predictive model:
+\[
+(a_1,a_2,c_1,c_2,\kappa_I)
+\Rightarrow
+\Gamma_I
+\Rightarrow
+C_{\mathrm{TMI}}(t)
+\Rightarrow
+\Struct_I(t)
+\Rightarrow
+\text{statistical test}.
+\]
+
+\section{Axiomatic core of the minimal model}
+
+\subsection{Axiom of geometric admissibility}
+
+Let \(g_{\mu\nu}\) be a metric on spacetime \(\M\). The metric defines the causal structure and the set of admissible causal transitions:
+\[
+g
+\Rightarrow
+\mathcal C^+_{I,g}(x)
+\Rightarrow
+J_g^+(x)
+\Rightarrow
+\Adm_c(g).
+\]
+Here
+\[
+\mathcal C^{+}_{I,g}(x)
+:=
+\{v\in T_x\M\setminus\{0\}\mid g_x(v,v)\leq 0,\ v\ \text{is future-directed}\}
+\]
+is the interface representation of the future causal cone. Its boundary coincides with the light cone of standard Lorentzian geometry:
+\[
+\partial\mathcal C^{+}_{I,g}(x)
+\equiv
+\mathcal C^{+}_{\mathrm{light},g}(x).
+\]
+
+\subsection{Axiom of quantum distribution of possibilities}
+
+For a fixed geometry \(g\), the interface space of possibilities is defined as
+\[
+\Hilb_I(g)=L^2\bigl(\Adm_c(g),\mathcal B_g,\mu_g\bigr),
+\]
+where \(\mathcal B_g\) is a chosen \(\sigma\)-algebra and \(\mu_g\) is an effective or regularized measure on the space of admissible transitions. A quantum state
+\[
+\Psi_I\in \Hilb_I(g)
+\]
+defines a distribution of possibilities:
+\[
+d\Prob_{\Psi,g}(\Phi)=|\psi_I(\Phi)|^2d\mu_g(\Phi).
+\]
+
+\subsection{Axiom of interface structuring}
+
+The interface transforms a distribution of possibilities into structure:
+\[
+I_Q:
+\Dist_{\mathrm{poss}}(\Psi_I;g)
+\longrightarrow
+\Struct_I.
+\]
+Operationally this may be written as a quantum channel:
+\[
+\mathcal E_I(\rho)=\sum_k K_k^{(I)}\rho K_k^{(I)\dagger},
+\qquad
+\sum_k K_k^{(I)\dagger}K_k^{(I)}=\mathbf 1.
+\]
+In the limiting case of complete reduction,
+\[
+\rho'_I\approx \sum_k p_k |s_k\rangle\langle s_k|,
+\qquad
+p_k=\Tr(E_k^{(I)}\rho),
+\qquad
+E_k^{(I)}=K_k^{(I)\dagger}K_k^{(I)}.
+\]
+
+\section{The minimal two-geometry model}
+
+\subsection{Two geometric alternatives}
+
+Let there be two admissible geometric configurations:
+\[
+|g_1\rangle,
+\qquad
+|g_2\rangle.
+\]
+They form the minimal space of alternatives:
+\[
+\Hilb_g^{(2)}=\operatorname{span}\{|g_1\rangle,|g_2\rangle\}.
+\]
+For the first model we assume orthonormality:
+\[
+\langle g_i|g_j\rangle=\delta_{ij}.
+\]
+
+The quantum state of geometry is
+\[
+|\Psi_g\rangle=c_1|g_1\rangle+c_2|g_2\rangle,
+\qquad
+|c_1|^2+|c_2|^2=1.
+\]
+
+The density matrix is
+\[
+\rho_g(0)=|\Psi_g\rangle\langle\Psi_g|
+=
+\begin{pmatrix}
+|c_1|^2 & c_1\overline{c_2}\\
+c_2\overline{c_1} & |c_2|^2
+\end{pmatrix}.
+\]
+The diagonal elements define probabilities, while the off-diagonal elements \(\rho_{12}\) and \(\rho_{21}\) define geometric coherence.
+
+\subsection{Interface-induced decoherence}
+
+Introduce the coherence-preservation coefficient \(\eta_I(t)\):
+\[
+\rho_{12}(t)=\eta_I(t)\rho_{12}(0).
+\]
+If \(0\leq\eta_I(t)\leq1\), then
+\[
+\rho_g(t)=
+\begin{pmatrix}
+|c_1|^2 & \eta_I(t)c_1\overline{c_2}\\
+\eta_I(t)c_2\overline{c_1} & |c_2|^2
+\end{pmatrix}.
+\]
+
+The interface-induced decoherence rate is \(\Gamma_I(t)\geq0\):
+\[
+\eta_I(t)=\exp\left(-\int_0^t\Gamma_I(s)ds\right).
+\]
+For a constant rate,
+\[
+\eta_I(t)=e^{-\Gamma_I t},
+\qquad
+|\rho_{12}(t)|=e^{-\Gamma_I t}|\rho_{12}(0)|.
+\]
+
+\subsection{Degree of structuring}
+
+The minimal degree of structuring is
+\[
+\Struct_I(t):=1-\frac{|\rho_{12}(t)|}{|\rho_{12}(0)|}.
+\]
+Therefore,
+\[
+\Struct_I(t)=1-\eta_I(t),
+\]
+and, for a constant rate,
+\[
+\boxed{
+\Struct_I(t)=1-e^{-\Gamma_I t}.
+}
+\]
+
+\section{Action of the interface field}
+
+\subsection{Minimal system}
+
+The minimal physical system is
+\[
+(g_{\mu\nu},\Psi_g,\chi_I),
+\]
+where \(\chi_I\) is an effective interface field. The total action is
+\[
+S_{\mathrm{TMI}}
+=
+S_{\mathrm{GR}}[g]
++
+S_Q[\Psi_g,g]
++
+S_I[\chi_I,g]
++
+S_{\mathrm{int}}[\chi_I,\Psi_g,g].
+\]
+
+The gravitational part is
+\[
+S_{\mathrm{GR}}[g]
+=
+\frac{c^4}{16\pi G}
+\int_{\M}R\sqrt{-g}\,d^4x.
+\]
+
+\subsection{Interface-field Lagrangian}
+
+In the minimal version \(\chi_I:\M\to\mathbb R\) is a real scalar field. Its Lagrangian is
+\[
+\Lag_\chi
+=
+-
+\frac12g^{\mu\nu}\nabla_\mu\chi_I\nabla_\nu\chi_I
+-
+\frac12m_I^2\chi_I^2
+-
+\frac{\beta_I}{4}\chi_I^4
+-
+\frac12\xi_I R\chi_I^2
++
+J_I\chi_I.
+\]
+Here \(m_I\) is the scale of the interface field, \(\beta_I\) is self-interaction, \(\xi_I\) is curvature coupling, and \(J_I\) is the source of the interface field.
+
+The equation of motion is
+\[
+\boxed{
+\Box_g\chi_I
+-
+(m_I^2+\xi_I R)\chi_I
+-
+\beta_I\chi_I^3
+=
+-J_I.
+}
+\]
+
+\subsection{Source of the interface field}
+
+The interface contrast for two geometries is defined in a soft normalized form:
+\[
+D_g(\Psi_g)=|c_1||c_2|d_I(g_1,g_2).
+\]
+The source is
+\[
+J_I=\alpha_I D_g(\Psi_g).
+\]
+
+In the stationary weak-field approximation,
+\[
+\nabla_\mu\chi_I\approx0,
+\qquad
+R\approx0,
+\qquad
+\beta_I\approx0.
+\]
+Then
+\[
+\chi_I=\frac{J_I}{m_I^2}=\frac{\alpha_I}{m_I^2}D_g(\Psi_g).
+\]
+If
+\[
+\Gamma_I=\lambda_I\chi_I^2,
+\]
+then
+\[
+\boxed{
+\Gamma_I
+=
+\frac{\lambda_I\alpha_I^2}{m_I^4}
+|c_1|^2|c_2|^2d_I^2(g_1,g_2).
+}
+\]
+
+\section{Interface distance between geometries}
+
+\subsection{General effective definition}
+
+Strictly speaking, one should compare not coordinate representations of metrics but equivalence classes of geometries:
+\[
+[g]=\{\varphi^*g\mid \varphi\in\Diff(\M)\}.
+\]
+The effective interface distance is
+\[
+\boxed{
+d_I([g_1],[g_2])
+=
+\frac{1}{\mathcal N_I}
+\inf_{\varphi\in\Diff(\M)}
+\left[
+\int_\Omega
+w_I(x)
+\left\|g_1-\varphi^*g_2\right\|_{g_0}^2
+ dV_{g_0}
+\right]^{1/2}.
+}
+\]
+Here \(w_I(x)\geq0\) is an interface weight, \(g_0\) is a regularizing background structure, and \(\mathcal N_I\) is a normalization factor.
+
+\subsection{Minisuperspace toy model}
+
+For the first computable case, geometry is represented by the scale factor \(a\):
+\[
+g_1=g(a_1),
+\qquad
+ g_2=g(a_2).
+\]
+Define
+\[
+\boxed{
+d_I(g(a_1),g(a_2))=\frac{|\ln(a_1/a_2)|}{\sigma_a}.
+}
+\]
+Then
+\[
+\Gamma_I
+=
+\frac{\lambda_I\alpha_I^2}{m_I^4\sigma_a^2}
+|c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+\]
+Let
+\[
+\kappa_I=\frac{\lambda_I\alpha_I^2}{m_I^4\sigma_a^2}.
+\]
+The central rate of the model becomes
+\[
+\boxed{
+\Gamma_I
+=
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+
+\section{Main prediction of the model}
+
+The normalized coherence is
+\[
+C_I(t)=\frac{|\rho_{12}(t)|}{|\rho_{12}(0)|}.
+\]
+Thus
+\[
+\boxed{
+C_I(t)=
+\exp\left[-
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right)t
+\right].
+}
+\]
+
+For the maximal superposition \(|c_1|^2=|c_2|^2=1/2\),
+\[
+\boxed{
+\Gamma_I=\frac{\kappa_I}{4}\ln^2\left(\frac{a_1}{a_2}\right),
+\qquad
+C_I(t)=\exp\left[-\frac{\kappa_I}{4}\ln^2\left(\frac{a_1}{a_2}\right)t\right].
+}
+\]
+
+The characteristic interface-decoherence time is
+\[
+\boxed{
+\tau_I=\frac{1}{\Gamma_I}
+=
+\frac{1}{\kappa_I |c_1|^2|c_2|^2\ln^2(a_1/a_2)}.
+}
+\]
+
+\section{Numerical example}
+
+Take a maximal superposition and \(\kappa_I=1\). Then
+\[
+\Gamma_I=\frac14\ln^2(a_1/a_2).
+\]
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(a_1/a_2\) & \(\ln(a_1/a_2)\) & \(\Gamma_I\) & \(\tau_I=1/\Gamma_I\)\\
+\midrule
+2 & 0.693 & 0.120 & 8.32\\
+10 & 2.303 & 1.326 & 0.754\\
+100 & 4.605 & 5.302 & 0.189\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For \(C_I(t)=e^{-\Gamma_I t}\):
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(t\) & \(a_1/a_2=2\) & \(a_1/a_2=10\) & \(a_1/a_2=100\)\\
+\midrule
+0 & 1.000 & 1.000 & 1.000\\
+0.5 & 0.942 & 0.515 & 0.071\\
+1 & 0.887 & 0.265 & 0.005\\
+2 & 0.786 & 0.071 & 0.000025\\
+5 & 0.548 & 0.0013 & \(\approx0\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The conclusion is
+\[
+\boxed{
+\text{interface-induced decoherence grows as the square of the logarithm of the ratio of geometric scales.}
+}
+\]
+
+\section{Comparison with standard decoherence}
+
+Let standard decoherence have rate \(\Gamma_{\std}\):
+\[
+C_{\std}(t)=e^{-\Gamma_{\std}t}.
+\]
+TMI adds an interface rate:
+\[
+\Gamma_{\mathrm{total}}=\Gamma_{\std}+\Gamma_I.
+\]
+Therefore,
+\[
+C_{\mathrm{TMI}}(t)=e^{-(\Gamma_{\std}+\Gamma_I)t}.
+\]
+The relative difference is
+\[
+\frac{C_{\mathrm{TMI}}(t)}{C_{\std}(t)}=e^{-\Gamma_I t}.
+\]
+The excess suppression of coherence is
+\[
+\boxed{
+\Delta_I(t)=1-e^{-\Gamma_I t}.
+}
+\]
+
+In the minisuperspace model,
+\[
+\boxed{
+\Delta_I(t)=1-
+\exp\left[-
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right)t
+\right].
+}
+\]
+
+\section{Observable quantity and hypotheses}
+
+The main observable excess is
+\[
+\Delta\Gamma_I=\Gamma_{\obs}-\Gamma_{\std}.
+\]
+The interface parameter of geometric contrast is
+\[
+\boxed{
+x_I:=|c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+Therefore, the TMI-QG prediction is
+\[
+\boxed{
+\Delta\Gamma_I=\kappa_I x_I.
+}
+\]
+
+The null hypothesis is
+\[
+\boxed{H_0:\ \kappa_I=0.}
+\]
+The TMI hypothesis is
+\[
+\boxed{H_{\mathrm{TMI}}:\ \kappa_I>0.}
+\]
+Equivalently,
+\[
+\boxed{
+H_{\mathrm{TMI}}:
+\Gamma_{\obs}
+=
+\Gamma_{\std}
++
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+
+The minimal version is falsified if, with sufficient precision,
+\[
+\Gamma_{\obs}-\Gamma_{\std}=0
+\]
+for significant \(a_1/a_2\neq1\), or if the dependence does not scale as \(x_I\).
+
+\section{Synthetic verification dataset}
+
+Take
+\[
+|c_1|^2=|c_2|^2=\frac12,
+\qquad
+\kappa_I=0.5,
+\qquad
+\Gamma_{\std}=0.1.
+\]
+Then
+\[
+x_I=\frac14\ln^2(a_1/a_2),
+\qquad
+\Delta\Gamma_I=0.5x_I,
+\qquad
+\Gamma_{\obs}=0.1+0.5x_I.
+\]
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+\(a_1/a_2\) & \(\ln(a_1/a_2)\) & \(x_I\) & \(\Delta\Gamma_I\) & \(\Gamma_{\obs}\)\\
+\midrule
+1 & 0.000 & 0.000 & 0.000 & 0.100\\
+2 & 0.693 & 0.120 & 0.060 & 0.160\\
+5 & 1.609 & 0.648 & 0.324 & 0.424\\
+10 & 2.303 & 1.325 & 0.663 & 0.763\\
+50 & 3.912 & 3.826 & 1.913 & 2.013\\
+100 & 4.605 & 5.302 & 2.651 & 2.751\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Coherence at \(t=1\):
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\(a_1/a_2\) & \(C_{\std}(1)\) & \(C_{\mathrm{TMI}}(1)\) & \(\Delta_I(1)\)\\
+\midrule
+1 & 0.905 & 0.905 & 0.000\\
+2 & 0.905 & 0.852 & 0.058\\
+5 & 0.905 & 0.655 & 0.277\\
+10 & 0.905 & 0.466 & 0.485\\
+50 & 0.905 & 0.134 & 0.852\\
+100 & 0.905 & 0.064 & 0.929\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Statistical test form}
+
+For scenarios \(i=1,\dots,n\), define
+\[
+x_I^{(i)}=|c_1^{(i)}|^2|c_2^{(i)}|^2
+\ln^2\left(\frac{a_1^{(i)}}{a_2^{(i)}}\right),
+\]
+\[
+y_i=\Delta\Gamma^{(i)}=\Gamma_{\obs}^{(i)}-\Gamma_{\std}^{(i)}.
+\]
+The minimal statistical model is
+\[
+\boxed{
+y_i=\kappa_I x_I^{(i)}+\varepsilon_i,
+\qquad
+\mathbb E[\varepsilon_i]=0.
+}
+\]
+
+If the errors have variances \(\sigma_i^2\), use weights
+\[
+w_i=\frac{1}{\sigma_i^2}.
+\]
+The estimator is
+\[
+\boxed{
+\hat\kappa_I=
+\frac{\sum_{i=1}^n w_i x_I^{(i)}y_i}{\sum_{i=1}^n w_i(x_I^{(i)})^2}.
+}
+\]
+The standard error is
+\[
+\boxed{
+\SE(\hat\kappa_I)=
+\left(\sum_{i=1}^n w_i(x_I^{(i)})^2\right)^{-1/2}.
+}
+\]
+The criterion for support is
+\[
+\boxed{
+\hat\kappa_I>0
+\quad\text{and}\quad
+0\notin \CI(\hat\kappa_I).
+}
+\]
+For an approximate 95\% criterion,
+\[
+\boxed{
+\hat\kappa_I-1.96\,\SE(\hat\kappa_I)>0.
+}
+\]
+
+\section{Domain of validity}
+
+\subsection{What the model already provides}
+
+The model already provides:
+\begin{enumerate}[label=\arabic*.]
+\item a computable quantity \(\Gamma_I\);
+\item the coherence-suppression law \(|\rho_{12}(t)|=e^{-\Gamma_I t}|\rho_{12}(0)|\);
+\item a distinction from standard decoherence;
+\item a falsifiable hypothesis \(\Delta\Gamma_I\propto x_I\);
+\item a statistical test form.
+\end{enumerate}
+
+\subsection{What the model does not yet prove}
+
+The model does not prove:
+\begin{enumerate}[label=\arabic*.]
+\item a complete theory of quantum gravity;
+\item a derivation of the Standard Model \(SU(3)\times SU(2)\times U(1)\);
+\item the fundamental origin of all masses, charges, and particle generations;
+\item a full measure \(\mu_G\) on the space of geometries;
+\item a general distance formula between arbitrary geometries;
+\item a universal mechanism of wave-function collapse.
+\end{enumerate}
+
+\subsection{Phenomenological parameters}
+
+The coefficient \(\kappa_I\) is an effective parameter in the current version:
+\[
+\boxed{
+\kappa_I\ \text{has not yet been derived from fundamental constants.}
+}
+\]
+A stricter version should obtain
+\[
+\kappa_I=f(\lambda_I,\alpha_I,m_I,\sigma_a,\ldots)
+\]
+or more deeply,
+\[
+\kappa_I=f(S_I,\chi_I,g,\Psi).
+\]
+
+\subsection{The measure problem}
+
+The measure \(\mu_G\) on the space of geometries is assumed to be effective or regularized in the current version. Possible future choices include:
+\begin{enumerate}[label=\arabic*.]
+\item a discrete measure;
+\item a minisuperspace measure;
+\item a cylindrical measure;
+\item an effective path-integral measure.
+\end{enumerate}
+
+\section{Final formulation of TMI-QG-2.0}
+
+\statementbox{The minimal TMI-QG model predicts an additional geometry-dependent contribution to the decoherence rate, generated by interface distinguishability of geometric alternatives.}
+
+Main formula:
+\[
+\boxed{
+\Delta\Gamma_I
+=
+\Gamma_{\obs}-\Gamma_{\std}
+=
+\kappa_I |c_1|^2|c_2|^2
+\ln^2\left(\frac{a_1}{a_2}\right).
+}
+\]
+Main testable dependence:
+\[
+\boxed{
+\Delta\Gamma_I=\kappa_I x_I,
+\qquad
+x_I=|c_1|^2|c_2|^2\ln^2(a_1/a_2).
+}
+\]
+Main statistical hypothesis:
+\[
+\boxed{H_0:\kappa_I=0,
+\qquad
+H_{\mathrm{TMI}}:\kappa_I>0.}
+\]
+
+Correct scientific status:
+\[
+\boxed{
+\text{TMI-QG proposes an interface-field mechanism for geometric decoherence.}
+}
+\]
+
+Incorrect status:
+\[
+\boxed{
+\text{TMI-QG should not be presented as a completed quantum gravity or Theory of Everything.}
+}
+\]
+
+\section{Short publication abstract}
+
+The minimal version of TMI-QG formulates an effective interface-field mechanism of geometric decoherence. In the two-geometry minisuperspace approximation, quantum geometry is represented by the state
+\[
+|\Psi_g\rangle=c_1|g(a_1)\rangle+c_2|g(a_2)\rangle.
+\]
+The interface geometric contrast is defined as
+\[
+x_I=|c_1|^2|c_2|^2\ln^2(a_1/a_2).
+\]
+The model predicts an additional contribution to the decoherence rate:
+\[
+\Delta\Gamma_I=\kappa_I x_I.
+\]
+Therefore,
+\[
+C_{\mathrm{TMI}}(t)
+=
+\exp[-(\Gamma_{\std}+\kappa_I x_I)t].
+\]
+The model is falsifiable: if the observed excess \(\Gamma_{\obs}-\Gamma_{\std}\) does not show a positive linear dependence on \(x_I\), the minimal version of the interface channel of geometric decoherence is rejected or requires modification.
+
+\section{Next stage}
+
+After TMI-QG-2.0, the natural next steps are:
+\begin{enumerate}[label=\arabic*.]
+\item construct a stricter measure \(\mu_G\), or explicitly fix the regularization;
+\item move from two geometries to an \(N\)-geometry and continuous model;
+\item derive \(\kappa_I\) from a more fundamental action \(S_I[\chi_I,g,\Psi]\);
+\item build a numerical toy model with a concrete potential \(U_{\mathrm{mini}}(a)\);
+\item compare predictions with Wheeler--DeWitt, standard decoherence, path-integral approaches, semiclassical gravity, and LQG;
+\item separate the physical TMI-QG branch from the mathematical branch of the category of interfaces.
+\end{enumerate}
+
+\end{document}
