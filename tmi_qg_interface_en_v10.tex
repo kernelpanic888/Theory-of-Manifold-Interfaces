@@ -1,0 +1,1758 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\newcommand{\statementbox}[1]{%
+\begin{center}%
+\fbox{\begin{minipage}{0.88\linewidth}\centering #1\end{minipage}}%
+\end{center}%
+}
+
+\DeclareMathOperator{\Adm}{Adm}
+\DeclareMathOperator{\Struct}{Struct}
+\DeclareMathOperator{\Dist}{Dist}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Cond}{Cond}
+\DeclareMathOperator{\Loss}{Loss}
+\DeclareMathOperator{\Coh}{Coh}
+
+\newcommand{\TMI}{\mathcal T_{\mathrm{MI}}}
+\newcommand{\QGI}{\mathcal QG_I}
+\newcommand{\M}{\mathcal M_U}
+\newcommand{\MIphys}{\mathcal M_I^{\mathrm{phys}}}
+\newcommand{\MIQG}{\mathcal M_I^{\mathrm{QG}}}
+\newcommand{\Gspace}{\mathfrak G}
+\newcommand{\Hilb}{\mathcal H}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Unc}{\mathcal U}
+\newcommand{\Eff}{\mathrm{eff}}
+\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\D}{\mathcal D}
+\newcommand{\BorelG}{\mathcal B_G}
+\newcommand{\Lag}{\mathcal L}
+
+\title{\textbf{Theory of Manifold Interfaces}\\
+\large A Cautious Interface Approach to Quantum Gravity}
+\author{Working mathematical-physical formulation}
+\date{Version: TMI-QG-1.0 draft}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This text fixes a cautious transition from the physical layer of the Theory of Manifold Interfaces to its quantum-gravitational layer. The text does not claim that quantum gravity has already been solved. Its task is more modest: to introduce an interface framework in which the metric ceases to be a fixed background, geometry is treated as a quantum possibility, and the physical interface describes the transition from geometric uncertainty to an effective classical structure of spacetime.
+
+Central formula:
+\[
+\boxed{
+\Gspace
+\Rightarrow
+\Psi_G[g]
+\Rightarrow
+\Prob_G(g)
+\Rightarrow
+I_G
+\Rightarrow
+ g_{\Eff}
+}
+\]
+
+Meaning: the space of possible geometries defines the domain of geometric uncertainty; the quantum state of geometry defines a distribution over this domain; the gravitational interface transforms the distribution of geometric possibilities into an effective observable geometry. In version TMI-QG-1.0 draft the linearity of the Lindblad generator is additionally clarified, the standard Markovian regime $\Gamma_I[\chi_I,g;\theta]$ is separated from a self-consistent phenomenological extension, an explicit calculation $\chi_I(\tau)\Rightarrow\Gamma_I(\tau)\Rightarrow\eta_I(\tau)$ is added, the main results of the version are formulated, and a bibliography of related formalisms is included.
+\end{abstract}
+
+\tableofcontents
+
+\section{Status and caution of the formulation}
+
+The present text is not a claim to a completed theory of quantum gravity, but a working interface scheme:
+\statementbox{TMI-QG is an interface model of the transition from quantum uncertainty of geometry to the classical structure of spacetime.}
+
+This version uses three already fixed theses of the physical layer of the Theory of Manifold Interfaces:
+\[
+\boxed{\text{geometry defines the domain of the possible,}}
+\]
+\[
+\boxed{\text{quantum physics defines the distribution of the possible,}}
+\]
+\[
+\boxed{\text{the interface transforms possibility into structure.}}
+\]
+
+The purely mathematical abstraction of the Theory of Manifold Interfaces is placed in the related publication:
+\begin{quote}
+\textit{Mathematical Abstraction of the Theory of Manifold Interfaces}.\\
+DOI: \href{https://doi.org/10.5281/zenodo.19978895}{10.5281/zenodo.19978895}.
+\end{quote}
+
+The present text constructs a physical-mathematical extension of this abstraction toward quantum gravity.
+
+\section{From fixed geometry to quantum geometry}
+
+In the classical physical layer the metric is assumed to be given:
+\[
+g_{\mu\nu}\quad \text{is given on}\quad \M.
+\]
+
+Then the causal structure, admissible transitions, and quantum distribution are constructed relative to this metric:
+\[
+g
+\Rightarrow
+\Adm_c(g)
+\Rightarrow
+\Hilb_I(g)
+\Rightarrow
+\Psi_I
+\Rightarrow
+\Dist_{\mathrm{poss}}(\Psi_I;g).
+\]
+
+For the transition to quantum gravity the key change is that the metric is no longer treated as a fixed background:
+\[
+\boxed{g_{\mu\nu}\ \text{becomes a quantum possibility}.}
+\]
+
+The space of admissible geometries is introduced:
+\[
+\boxed{
+\Gspace:=\mathcal G_{\mathrm{Lor}}(\M)/\mathrm{Diff}(\M).
+}
+\]
+Here $\mathcal G_{\mathrm{Lor}}(\M)$ denotes the class of admissible Lorentzian geometries on $\M$.
+
+The quotient by the diffeomorphism group emphasizes that physically significant objects are not coordinate representations of a metric, but geometric equivalence classes.
+
+\section{Quantum state of geometry}
+
+The quantum state of geometry is denoted by the functional
+\[
+\Psi_G[g].
+\]
+
+Formally one may write
+\[
+\boxed{
+|\Psi_G\rangle
+=
+\int_{\Gspace}
+\Psi_G[g]\,|g\rangle\,\D g.
+}
+\]
+
+Here:
+\begin{itemize}[leftmargin=2em]
+    \item $|g\rangle$ is a formal basis of geometric alternatives;
+    \item $\Psi_G[g]$ is the amplitude of the geometry $g$;
+    \item $\D g$ is a formal measure on the space of geometries.
+\end{itemize}
+
+Cautious remark: the measure $\D g$ is not regarded in this version as finally constructed. It marks the measure problem in the space of geometries. Therefore the expression should be understood as a formal scheme, not as a completed construction of quantum gravity.
+
+For the working version we introduce the Hilbert space of geometric possibilities:
+\[
+\boxed{
+\Hilb_G
+:=
+L^2(\Gspace,\BorelG,\mu_G).
+}
+\]
+Here $\BorelG$ is a chosen $\sigma$-algebra of distinguishable classes of geometries, and $\mu_G$ is an effective or regularized measure on $\Gspace$. In a strict version $\mu_G$ must be constructed explicitly; in the present text it marks the place where the measure problem must either be solved or restricted by a choice of discretization, gauge fixing, regularization, or a finite family of geometric alternatives.
+
+Then the quantum state of geometry may be understood as
+\[
+\Psi_G\in\Hilb_G,
+\qquad
+\|\Psi_G\|^2
+=
+\int_{\Gspace}|\Psi_G[g]|^2\,d\mu_G(g)=1.
+\]
+The distribution of possible geometries is defined by
+\[
+\boxed{
+d\Prob_G(g)=|\Psi_G[g]|^2\,d\mu_G(g).
+}
+\]
+
+In a discretized or effective model:
+\[
+\boxed{
+|\Psi_G\rangle
+=
+\sum_i c_i |g_i\rangle,
+\qquad
+\sum_i |c_i|^2=1.
+}
+\]
+
+Then:
+\[
+\boxed{
+\Prob_G(g_i)=|c_i|^2.
+}
+\]
+
+\section{Physical interface manifold}
+
+To move from interpretation to a physical model, the physical interface manifold is introduced:
+\[
+\boxed{
+\MIphys
+:=
+(\M,g_{\mu\nu},\chi_I,\Adm_I,\Hilb_I,\Prob_{\Psi,I},\Struct_I).
+}
+\]
+
+In the quantum-gravitational layer, one fixed metric is replaced by the space of possible geometries:
+\[
+\boxed{
+\MIQG
+:=
+(\Gspace,\Hilb_G,\Psi_G,\chi_I,\mathcal E_I,\Struct_G).
+}
+\]
+
+Here:
+\begin{itemize}[leftmargin=2em]
+    \item $\Gspace$ is the space of admissible geometries;
+    \item $\Hilb_G=L^2(\Gspace,\BorelG,\mu_G)$ is the working Hilbert space of geometric possibilities;
+    \item $\Psi_G$ is the quantum state of geometry;
+    \item $\chi_I$ is the physical interface field;
+    \item $\mathcal E_I$ is the interface quantum channel;
+    \item $\Struct_G$ is the structured geometry of the result.
+\end{itemize}
+
+\section{Interface field and feedback}
+
+To strengthen the physical status of the interface, we introduce not merely a function, but a field as a section of an interface bundle:
+\[
+\boxed{
+E_I\longrightarrow \M,
+\qquad
+\chi_I\in\Gamma(E_I).
+}
+\]
+Here $E_I$ is the interface bundle over spacetime, and $\Gamma(E_I)$ is the space of its smooth sections. In the minimal scalar model one may take the trivial bundle $E_I=\M\times\mathbb R$, so that $\chi_I:\M\to\mathbb R$. In a more general version $\chi_I$ may be a vector, tensor, or operator-valued interface field.
+
+The local value $\chi_I(x)$ encodes the physical state of the interface layer at the point $x$. Its role is to connect three levels: causal geometry, quantum distribution, and structuring of the result.
+
+In classical geometry, causality is given in the direction
+\[
+g_{\mu\nu}\Rightarrow \Adm_c(g).
+\]
+
+In the interface-field version feedback is added:
+\[
+\boxed{
+g_{\mu\nu}\leftrightarrow\chi_I.
+}
+\]
+That is, geometry restricts admissible interface transitions, while the interface field contributes to the effective geometry.
+
+The minimal form of this feedback is
+\[
+\boxed{
+G_{\mu\nu}[g]
+=
+\frac{8\pi G}{c^4}
+\left(
+T_{\mu\nu}^{(\Psi)}+T_{\mu\nu}^{(I)}
+\right).
+}
+\]
+
+Here $T_{\mu\nu}^{(I)}$ is the effective energy-momentum tensor of the interface layer. In Lagrangian form it should be derived from the interface action:
+\[
+\boxed{
+T_{\mu\nu}^{(I)}
+:=
+-\frac{2}{\sqrt{-g}}
+\frac{\delta S_I}{\delta g^{\mu\nu}}.
+}
+\]
+Thus feedback becomes not a declaration but a variational construction: if the interface layer has an action $S_I$, it contributes to the right-hand side of the equations of geometry. If
+\[
+T_{\mu\nu}^{(I)}\to 0,
+\]
+then the ordinary form of Einstein's equations is recovered:
+\[
+G_{\mu\nu}[g]
+=
+\frac{8\pi G}{c^4}T_{\mu\nu}^{(\Psi)}.
+\]
+
+\section{Quantum gravitational interface}
+
+At the quantum level the interface is understood as a transition from uncertainty to structure. In the ordinary quantum layer:
+\[
+I_Q:\Unc_Q\to\Struct_I.
+\]
+
+In quantum gravity the analogous formula becomes
+\[
+\boxed{
+I_G:\Unc_G\to\Struct_G.
+}
+\]
+
+Where:
+\begin{itemize}[leftmargin=2em]
+    \item $\Unc_G$ is geometric uncertainty;
+    \item $\Struct_G$ is a definite or effective geometric structure;
+    \item $I_G$ is the gravitational interface.
+\end{itemize}
+
+For a discrete superposition of geometries:
+\[
+\boxed{
+I_G:
+\sum_i c_i |g_i\rangle
+\longrightarrow
+ g_{\Eff}.
+}
+\]
+
+More cautiously:
+\[
+\boxed{
+I_G:
+\Dist_{\mathrm{poss}}(\Gspace)
+\longrightarrow
+\Struct_G.
+}
+\]
+
+This means that the interface need not literally ``destroy'' the superposition. More correctly:
+\statementbox{The interface defines a mechanism of structuring geometric uncertainty.}
+
+This structuring may appear as decoherence, reduction, effective selection of a classical geometry, or registration of a geometric result relative to a concrete structure of distinction.
+
+\section{Density-matrix and quantum-channel formulation}
+
+Let the quantum state of geometry be given by the density matrix
+\[
+\rho_G=|\Psi_G\rangle\langle\Psi_G|.
+\]
+
+The interface transition is defined by a quantum channel depending on the interface field:
+\[
+\boxed{
+\mathcal E_I=\mathcal E_{\chi_I},
+\qquad
+\mathcal E_{\chi_I}(\rho_G)
+=
+\sum_k K_k[\chi_I,g]\,\rho_G\,K_k[\chi_I,g]^{\dagger}.
+}
+\]
+The complete positivity and trace preservation condition is
+\[
+\boxed{
+\sum_k K_k[\chi_I,g]^{\dagger}K_k[\chi_I,g]=\Id.
+}
+\]
+Thus the channel $\mathcal E_I$ is not an external operation: it is determined by the interface configuration $\chi_I$ and by how this configuration distinguishes geometric alternatives.
+
+In the basic version the operators $K_k$ depend on $\chi_I$ and $g$, but do not depend directly on the state $\rho_G$ itself. This preserves linearity of the quantum channel:
+\[
+\mathcal E_{\chi_I}(a\rho_1+b\rho_2)
+=
+a\mathcal E_{\chi_I}(\rho_1)+b\mathcal E_{\chi_I}(\rho_2).
+\]
+If in the future the operators $K_k$ are allowed to depend on $\Psi_G$ or $\rho_G$, such a model must be treated separately as an effective nonlinear phenomenology, not as a standard quantum channel.
+
+After interface structuring:
+\[
+\boxed{
+\rho_G\longmapsto \rho_G'=
+\mathcal E_{\chi_I}(\rho_G).
+}
+\]
+
+In the limit of classical geometry:
+\[
+\boxed{
+\rho_G'
+\approx
+|g_{\Eff}\rangle\langle g_{\Eff}|.
+}
+\]
+
+In a more realistic case a mixed state arises:
+\[
+\boxed{
+\rho_G'
+\approx
+\sum_k p_k |g_k\rangle\langle g_k|,
+\qquad
+p_k=\Tr(E_k^{(I)}\rho_G),
+}
+\]
+where
+\[
+E_k^{(I)}=K_k[\chi_I,g]^{\dagger}K_k[\chi_I,g].
+\]
+
+In this form the interface channel describes not only ``collapse'', but a more general mechanism: decoherence, reduction, coarse-graining, or effective registration of geometry relative to the distinction structure defined by $\chi_I$.
+
+\section{Interface action functional}
+
+The minimal classical action functional of the interface-field version is
+\[
+\boxed{
+S_{\TMI}[g,\Psi,\chi_I]
+=
+S_{\mathrm{GR}}[g]
++
+S_Q[\Psi,g]
++
+S_I[\chi_I,g,\Psi].
+}
+\]
+
+Variations give the system of equations:
+\[
+\boxed{
+\frac{\delta S_{\TMI}}{\delta g^{\mu\nu}}=0,
+\qquad
+\frac{\delta S_{\TMI}}{\delta \Psi}=0,
+\qquad
+\frac{\delta S_{\TMI}}{\delta \chi_I}=0.
+}
+\]
+
+The third equation is the new interface equation:
+\[
+\boxed{
+\frac{\delta S_{\TMI}}{\delta \chi_I}=0.
+}
+\]
+
+For the minimal model the interface action can be written as
+\[
+\boxed{
+S_I[\chi_I,g,\Psi]
+=
+\int_{\M}
+\Lag_I(\chi_I,\nabla\chi_I,g,\Psi)\sqrt{-g}\,d^4x.
+}
+\]
+A working scalar example is
+\[
+\boxed{
+\Lag_I
+=
+-\frac{1}{2}g^{\mu\nu}\nabla_\mu\chi_I\nabla_\nu\chi_I
+-
+V(\chi_I)
+-
+\chi_I\,J_I(g,\Psi).
+}
+\]
+Here $V(\chi_I)$ is the potential of the interface field, and $J_I(g,\Psi)$ is a source or coupling of the interface field to the geometric and quantum layers. This coupling specifies how the quantum distribution and geometric curvature affect structuring.
+
+Variation with respect to $\chi_I$ gives the minimal interface-field equation:
+\[
+\boxed{
+\Box_g\chi_I
+-
+\frac{dV}{d\chi_I}
+=
+J_I(g,\Psi),
+}
+\]
+where $\Box_g:=\nabla^\mu\nabla_\mu$.
+
+For the scalar minimal part the energy-momentum tensor of the interface layer has the form
+\[
+\boxed{
+T_{\mu\nu}^{(I)}
+=
+\nabla_\mu\chi_I\nabla_\nu\chi_I
+-
+g_{\mu\nu}
+\left(
+\frac{1}{2}\nabla^\alpha\chi_I\nabla_\alpha\chi_I
++
+V(\chi_I)
++
+\chi_I J_I(g,\Psi)
+\right)
++
+T_{\mu\nu}^{(I,\mathrm{coup})}.
+}
+\]
+The last term $T_{\mu\nu}^{(I,\mathrm{coup})}$ accounts for the explicit dependence of the source $J_I(g,\Psi)$ on the metric. If this dependence is absent or negligible in the effective model, this term may be omitted.
+
+For the quantum-gravitational version one introduces a formal integral over geometries and interface configurations:
+\[
+\boxed{
+\mathcal Z_I
+=
+\int_{\Gspace}\D g
+\int \D\chi_I\,
+\exp\left(\frac{i}{\hbar}S_{\TMI}[g,\chi_I,\Psi]\right).
+}
+\]
+
+Cautious remark: $\mathcal Z_I$ is a formal interface functional. This version does not claim that the measure $\D g$ or the integral over all geometries has already been mathematically completed.
+
+\section{Main chain of TMI-QG}
+
+The main chain of the quantum-gravitational layer is
+\[
+\boxed{
+\Gspace
+\Rightarrow
+\Hilb_G
+\Rightarrow
+\Psi_G
+\Rightarrow
+\Dist_{\mathrm{poss}}(\Gspace)
+\Rightarrow
+I_G
+\Rightarrow
+\Struct_G
+\Rightarrow
+ g_{\Eff}.
+}
+\]
+
+Semantic unpacking:
+\begin{enumerate}[leftmargin=2em]
+    \item $\Gspace$ defines the domain of possible geometries.
+    \item $\Hilb_G$ defines the space of quantum geometric states.
+    \item $\Psi_G$ defines the amplitude structure of geometric uncertainty.
+    \item $\Dist_{\mathrm{poss}}(\Gspace)$ defines the distribution of possible geometries.
+    \item $I_G$ defines the interface of structuring.
+    \item $\Struct_G$ is the result of the transition from uncertainty to structure.
+    \item $g_{\Eff}$ is the effective classical geometry.
+\end{enumerate}
+
+Short formula:
+\[
+\boxed{
+\QGI:
+\Psi_G[g]
+\Rightarrow
+\Prob_G(g)
+\Rightarrow
+I_G
+\Rightarrow
+ g_{\Eff}.
+}
+\]
+
+\section{Limits: return to general relativity and quantum mechanics}
+
+\subsection{Limit of general relativity}
+
+If the interface contribution vanishes,
+\[
+T_{\mu\nu}^{(I)}\to0,
+\]
+and the geometric state becomes classically definite,
+\[
+\rho_G'\to |g_{\cl}\rangle\langle g_{\cl}|,
+\]
+then classical general relativity is recovered:
+\[
+\boxed{
+G_{\mu\nu}[g_{\cl}]
+=
+\frac{8\pi G}{c^4}T_{\mu\nu}.
+}
+\]
+
+\subsection{Limit of quantum mechanics on a fixed background}
+
+If the geometry is fixed,
+\[
+\Gspace\to\{g_{\mathrm{fixed}}\},
+\]
+then the quantum-gravitational layer reduces to quantum theory on a given background:
+\[
+\boxed{
+\Hilb_I(g_{\mathrm{fixed}})
+\Rightarrow
+\Psi_I
+\Rightarrow
+\Dist_{\mathrm{poss}}(\Psi_I;g_{\mathrm{fixed}}).
+}
+\]
+
+In this limit TMI-QG does not compete with ordinary quantum mechanics, but contains it as a special case with fixed geometry.
+
+\section{Minimal physical hypothesis}
+
+The minimal hypothesis of the interface approach to quantum gravity is:
+\statementbox{The physical gravitational interface is a mechanism of transition from quantum uncertainty of geometry to an effective classical structure of spacetime.}
+
+Formally:
+\[
+\boxed{
+I_G:
+\Unc_G
+\longrightarrow
+\Struct_G.
+}
+\]
+
+Or:
+\[
+\boxed{
+\Psi_G[g]
+\Rightarrow
+\Prob_G(g)
+\Rightarrow
+I_G
+\Rightarrow
+ g_{\Eff}.
+}
+\]
+
+\section{Physical meaning of the interface field}
+
+It is important to emphasize that $\chi_I$ is not introduced as one more ordinary scalar field without its own role. Its specific function is that it parameterizes the interface transition
+\[
+\boxed{
+\begin{gathered}
+\text{geometric possibility}\\
+\longrightarrow\\
+\text{quantum distribution}\\
+\longrightarrow\\
+\text{structured result}
+\end{gathered}
+}
+\]
+
+In other words, $\chi_I$ differs from an ordinary field not only by its possible dynamics, but by its operational function:
+\[
+\boxed{
+\chi_I
+\quad\text{defines the structuring channel}\quad
+\mathcal E_{\chi_I}.
+}
+\]
+
+Therefore one and the same geometric superposition may give different effective structures under different interface configurations:
+\[
+\boxed{
+\rho_G'
+=
+\mathcal E_{\chi_I}(\rho_G),
+\qquad
+\rho_G''
+=
+\mathcal E_{\tilde\chi_I}(\rho_G),
+\qquad
+\rho_G'\neq \rho_G''.
+}
+\]
+
+Meaning: the interface field determines which geometric alternatives become distinguishable, which coherences are suppressed, which structures are fixed, and which effective geometry arises after the transition.
+
+In this version the functional role of the interface field can be fixed as
+\[
+\boxed{
+\chi_I:
+(\Gspace,\Psi_G,\rho_G)
+\longmapsto
+\mathcal E_{\chi_I}
+\longmapsto
+\Struct_G.
+}
+\]
+
+\section{Physically motivated coupling source \texorpdfstring{$J_I(g,\Psi)$}{J I(g,Psi)}}
+
+The source $J_I(g,\Psi)$ should express which physical quantities control interface structuring. In the minimal phenomenological version one may take
+\[
+\boxed{
+J_I(g,\Psi)
+=
+\alpha R
++
+\beta\,\langle\widehat T\rangle_\Psi
++
+\gamma\,\mathcal C_G^{(I)}.
+}
+\]
+
+Here:
+\begin{itemize}[leftmargin=2em]
+    \item $R$ is the scalar curvature;
+    \item $\langle\widehat T\rangle_\Psi$ is the trace or scalar contraction of the expected energy-momentum tensor of the quantum layer;
+    \item $\mathcal C_G^{(I)}$ is the interface-dependent coherence measure of the geometric state;
+    \item $\alpha,\beta,\gamma$ are coupling parameters.
+\end{itemize}
+
+This expression does not claim the final form of a law. It fixes the minimal hypothesis:
+\statementbox{curvature, energy, and quantum coherence may control the rate and direction of interface structuring of geometry.}
+
+For the coherence measure one may use a working discrete form. Let
+\[
+\rho_G=\sum_{i,j}\rho_{ij}^{(I)}|g_i\rangle_I\,{}_I\langle g_j|.
+\]
+Then off-diagonal coherence is defined as
+\[
+\boxed{
+\mathcal C_G^{(I)}
+:=
+\sum_{i\neq j}|\rho_{ij}^{(I)}|.
+}
+\]
+
+Here the elements $\rho_{ij}^{(I)}$ are taken in the decomposition of geometric alternatives $\{|g_i\rangle_I\}$ specified by the interface. Therefore coherence is not an absolute quantity:
+\[
+\boxed{
+\mathcal C_G^{(I)}
+\quad\text{depends on the interface structure of distinction.}
+}
+\]
+This is not a defect, but part of the meaning of TMI-QG: the interface determines which geometric alternatives become distinguishable and which coherences are subject to suppression.
+
+The parameters $\alpha,\beta,\gamma$ are dimensional coupling constants. They are chosen so that all terms in $J_I(g,\Psi)$ have the same physical dimension. Therefore the phenomenological sum above should be understood not as a dimensionless addition of heterogeneous quantities, but as an effective dimensionally consistent coupling model.
+
+In this case the source $J_I$ is strengthened when the geometric state contains significant superpositional uncertainty relative to the distinction structure defined by the interface. This agrees with the idea that the interface field is more active where a transition from uncertainty to structure is required.
+
+\section{Phenomenological status of the model}
+
+This version is an effective phenomenological model, not a completed fundamental theory of all geometric degrees of freedom. This means that some objects are introduced as minimal working ansatzes that allow one to move from the general interface idea to a computable scheme.
+
+The main phenomenological hypothesis is that the dynamics of the interface field $\chi_I$ induces an effective rate of suppression of geometric coherence. In the standard linear Markovian regime this rate is written as
+\[
+\boxed{
+\Gamma_I=\Gamma_I[\chi_I,g;\theta].
+}
+\]
+Here $\theta$ denotes a set of effective parameters of the reduced description: coarse-graining, the choice of basis of geometric alternatives, the scale of evolution, parameters of wave packets, and possible external conditions.
+
+In the minimal version it is convenient to separate background and interface parts:
+\[
+\boxed{
+\Gamma_I
+=
+\Gamma_0
++
+\delta\Gamma[\chi_I,g;\theta].
+}
+\]
+Here $\Gamma_0$ denotes the basic effective level of decoherence, which may be associated with the environment, coarse-graining, or the chosen approximation, whereas $\delta\Gamma[\chi_I,g;\theta]$ denotes the proper interface correction.
+
+For TMI-QG the second part is essential:
+\[
+\boxed{
+\delta\Gamma[\chi_I,g;\theta]
+}
+\]
+because it expresses the new physical claim of the theory: geometric structuring is not introduced as an external observation procedure, but is connected with the physical interface layer.
+
+Consequently, this version does not claim that the concrete formula for $\Gamma_I$ has already been derived from a fundamental action. The claim is more cautious:
+\statementbox{there exists an effective interface correction $\delta\Gamma[\chi_I,g;\theta]$ which parameterizes the rate of transition from geometric coherence to structured effective geometry.}
+
+This is what makes the model in principle testable: if the interface correction is nonzero,
+\[
+\boxed{
+\delta\Gamma[\chi_I,g;\theta]\neq0,
+}
+\]
+then it should appear as a change in the rate of suppression of off-diagonal elements of the geometric density matrix.
+
+In the standard linear Markovian regime the parameters $\theta$ are treated as external or effectively specified parameters of the reduced model. Therefore the generator acts linearly on $\rho_G$. If in the future a dependence of the form $\Gamma_I[\chi_I,g,\rho_G]$ is introduced, it must be treated separately: as a self-consistent nonlinear phenomenological extension, not as a standard linear Lindblad generator. Without this caveat such a dependence could violate linearity of standard open quantum dynamics.
+
+\section{Effective relation between the interface action \texorpdfstring{$S_I$}{SI} and the structuring rate \texorpdfstring{$\Gamma_I$}{Gamma I}}
+
+In version TMI-QG-1.0 draft, the relation between the interface action and the structuring rate is clarified as effective rather than fundamentally derived. The minimal logic has the form
+\[
+\boxed{
+S_I[\chi_I,g,\Psi]
+\Rightarrow
+\chi_I(\tau)
+\Rightarrow
+\delta\Gamma[\chi_I,g;\theta]
+\Rightarrow
+\mathcal E_{\chi_I}.
+}
+\]
+
+This means that the action $S_I$ defines the dynamics of the interface field, while the chosen effective functional $\Gamma_I[\chi_I,g;\theta]$ translates this dynamics into a parameter of the quantum channel. The parameters $\theta$ fix coarse-graining, the choice of reduced space, time scale, wave-packet parameters, and possible external conditions. This version does not claim a strict microscopic derivation of $\Gamma_I$ from $S_I$; it fixes a more cautious effective bridge:
+\[
+\boxed{
+\Gamma_I[\chi_I,g;\theta]
+=
+\Gamma_0+
+\delta\Gamma[\chi_I,g;\theta].
+}
+\]
+
+The background part $\Gamma_0$ describes decoherence associated with coarse-graining, an external environment, or the choice of effective description. The interface part $\delta\Gamma$ must vanish in the limit where there is no physical interface contribution:
+\[
+\boxed{
+\chi_I\to\chi_{I,0},
+\qquad
+\delta\Gamma[\chi_{I,0},g;\theta]\to0.
+}
+\]
+
+Thus ordinary quantum-cosmological decoherence remains an admissible limit, and the new TMI-QG hypothesis consists only in the existence of an additional interface correction:
+\[
+\boxed{
+\delta\Gamma[\chi_I,g;\theta]\neq0.
+}
+\]
+
+In a minimal effective model one may assume that $\delta\Gamma$ is a functional of local scalars built from $\chi_I$, curvature, the interface distinction structure, and effective model parameters:
+\[
+\boxed{
+\delta\Gamma
+=
+F_{\ge0}
+\left(
+|\nabla\chi_I|_g^2,
+K,
+R^2,
+\mathcal C_G^{(I)};\theta
+\right).
+}
+\]
+
+Here $F_{\ge0}$ is specified phenomenologically. A stricter future version should derive it from the microscopic dynamics of the interface field, from integrating out hidden degrees of freedom, or from the effective influence of the interface layer on geometric wave packets.
+
+\section{Effective reconstructible parameter: \texorpdfstring{$\Gamma_I$}{Gamma I}}
+
+To move from the framework to a physical model, one needs a quantity that can be connected not necessarily with a direct measurement, but with reconstruction from the effects of suppressing geometric coherence. Therefore in version TMI-QG-1.0 draft $\Gamma_I$ is not called a fundamental observable. It is introduced as an effective reconstructible parameter of interface structuring, or interface decoherence, of geometry. Since a decoherence rate must be nonnegative, the minimal phenomenological ansatz is
+\[
+\boxed{
+\Gamma_I
+:=
+\lambda_\chi\,\left|g^{\mu\nu}\nabla_\mu\chi_I\nabla_\nu\chi_I\right|
++
+\alpha_K |K|
++
+\alpha_R R^2
++
+\alpha_C\mathcal C_G^{(I)},
+\qquad
+\Gamma_I\ge0.
+}
+\]
+
+The same expression may be understood as a concretization of the general scheme
+\[
+\boxed{
+\Gamma_I
+=
+\Gamma_0
++
+\delta\Gamma[\chi_I,g;\theta]
+}
+\]
+under the choice
+\[
+\boxed{
+\delta\Gamma[\chi_I,g;\theta]
+=
+\lambda_\chi\left|g^{\mu\nu}\nabla_\mu\chi_I\nabla_\nu\chi_I\right|
++
+\alpha_K |K|
++
+\alpha_R R^2
++
+\alpha_C\mathcal C_G^{(I)}.
+}
+\]
+If the concrete model has no background external decoherence, one may set $\Gamma_0=0$.
+
+Here
+\[
+K:=R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
+\]
+is the Kretschmann invariant, $R$ is the scalar curvature, and $\mathcal C_G^{(I)}$ is the interface-dependent coherence. The absolute value in the gradient term is introduced because in Lorentzian signature the quantity
+\[
+g^{\mu\nu}\nabla_\mu\chi_I\nabla_\nu\chi_I
+\]
+need not be positive. In a more general version one may replace the explicit formula by
+\[
+\boxed{
+\Gamma_I=F_{\ge0}\left(\nabla\chi_I,K,R^2,\mathcal C_G^{(I)}\right),
+}
+\]
+where $F_{\ge0}$ is a nonnegative phenomenological functional.
+
+The parameters $\lambda_\chi,\alpha_K,\alpha_R,\alpha_C$ are dimensional coupling constants and are chosen so that $\Gamma_I$ has the dimension of inverse time or inverse evolution parameter. For positive coefficients the right-hand side defines a nonnegative rate of interface structuring.
+
+Physical meaning:
+\statementbox{the stronger the interface inhomogeneity, curvature, and interface-dependent geometric coherence, the higher the possible rate of transition from indefinite geometry to effective structure.}
+
+For caution, in this version $\Gamma_I$ should be regarded not as an established prediction, but as an effective phenomenological parameter that could potentially be reconstructed from the rate of coherence suppression, widths of wave packets, loss of interference terms, or other consequences of interface structuring. Its task is to show how TMI-QG can move from a formal scheme to testable corrections without yet claiming a fundamental law.
+
+For example, if the geometric density matrix satisfies an effective decoherence equation
+\[
+\boxed{
+\frac{d\rho_G}{d\tau}
+=
+-\frac{i}{\hbar}[\widehat H_G,\rho_G]
+-
+\Gamma_I\,\mathcal D_G(\rho_G),
+}
+\]
+then $\Gamma_I$ defines the strength of interface suppression of geometric coherences. Here $\mathcal D_G$ is an effective decoherence superoperator in the space of geometric alternatives.
+
+\section{Relation of the structuring rate to a concrete quantum channel}
+
+So that $\Gamma_I$ does not remain merely a phenomenological insertion, let us specify a minimal pure-decoherence channel. Consider a two-level subspace of geometric alternatives and the parameter
+\[
+\boxed{
+\eta_I(\tau):=e^{-\Gamma_I\tau},
+\qquad
+0\leq\eta_I\leq1.
+}
+\]
+The quantity $\Gamma_I\tau$ must be dimensionless; hence, if $\tau$ has the dimension of time or of a proper evolution parameter, then $[\Gamma_I]=[\tau]^{-1}$.
+
+If the rate of interface structuring depends on the evolution parameter, the constant exponential should be replaced by the integral form
+\[
+\boxed{
+\eta_I(\tau)
+=
+\exp\left(-\int_0^\tau \Gamma_I(s)\,ds\right).
+}
+\]
+A constant rate is the special case
+\[
+\Gamma_I(s)=\Gamma_I=\mathrm{const}
+\quad\Rightarrow\quad
+\eta_I(\tau)=e^{-\Gamma_I\tau}.
+\]
+It is the quantity
+\[
+\int_0^\tau \Gamma_I(s)\,ds
+\]
+that is the dimensionless accumulated strength of interface decoherence.
+
+The minimal CPTP pure-decoherence channel can be written through Kraus operators
+\[
+\boxed{
+K_0=
+\sqrt{\frac{1+\eta_I}{2}}\,\Id,
+\qquad
+K_1=
+\sqrt{\frac{1-\eta_I}{2}}\,\sigma_z.
+}
+\]
+Then
+\[
+\boxed{
+\mathcal E_{\chi_I}(\rho)
+=
+K_0\rho K_0^\dagger+K_1\rho K_1^\dagger.
+}
+\]
+Since
+\[
+K_0^\dagger K_0+K_1^\dagger K_1=\Id,
+\]
+the channel preserves trace and is physically admissible in this two-state model.
+
+If
+\[
+\rho=
+\begin{pmatrix}
+\rho_{11} & \rho_{12}\\
+\rho_{21} & \rho_{22}
+\end{pmatrix},
+\]
+then the channel acts as
+\[
+\boxed{
+\mathcal E_{\chi_I}(\rho)=
+\begin{pmatrix}
+\rho_{11} & \eta_I\rho_{12}\\
+\eta_I\rho_{21} & \rho_{22}
+\end{pmatrix}.
+}
+\]
+Consequently,
+\[
+\boxed{
+\rho_{12}\longmapsto \eta_I(\tau)\rho_{12},
+\qquad
+\rho_{21}\longmapsto \eta_I(\tau)\rho_{21}.
+}
+\]
+This is why $\Gamma_I$ can be interpreted as the local rate of interface suppression of coherence between geometric alternatives, and $\eta_I(\tau)$ as the accumulated coefficient of coherence preservation. In this minimal model $\Gamma_I$ enters not arbitrarily, but as the parameter of a concrete quantum channel that transforms a geometric superposition into a mixed state relative to the interface structure of distinction.
+
+\section{Lindblad generator of interface decoherence}
+
+The Kraus form of the channel is convenient for a finite step of evolution. For the dynamical form it is useful to write the same mechanism through a Lindblad equation. In the two-level subspace of geometric alternatives the minimal interface decoherence operator can be defined as
+\[
+\boxed{
+L_I[\chi_I,g;\theta]
+=
+\sqrt{\frac{\Gamma_I[\chi_I,g;\theta]}{2}}\,\sigma_z.
+}
+\]
+In this standard form $\Gamma_I[\chi_I,g;\theta]$ does not depend functionally on the current density matrix $\rho_G$; therefore the Lindblad dynamics remains linear in the state. Self-consistent variants with $\Gamma_I[\chi_I,g,\rho_G]$ may be considered only as separate nonlinear phenomenological extensions.
+
+The density-matrix dynamics is then
+\[
+\boxed{
+\frac{d\rho_G}{d\tau}
+=
+-
+\frac{i}{\hbar}[H_G,\rho_G]
++
+L_I\rho_G L_I^\dagger
+-
+\frac12\{L_I^\dagger L_I,\rho_G\}.
+}
+\]
+If in this two-level sector the Hamiltonian does not create additional mixing between $|a_1\rangle$ and $|a_2\rangle$, then for the off-diagonal element one obtains
+\[
+\boxed{
+\frac{d\rho_{12}}{d\tau}
+=
+-
+\Gamma_I(\tau)\rho_{12}.
+}
+\]
+Thus
+\[
+\boxed{
+\rho_{12}(\tau)
+=
+\exp\left(-\int_0^\tau\Gamma_I(s)ds\right)\rho_{12}(0).
+}
+\]
+That is, the Lindblad form gives the same coherence-suppression coefficient as the Kraus representation of the channel:
+\[
+\boxed{
+\eta_I(\tau)
+=
+\exp\left(-\int_0^\tau\Gamma_I(s)ds\right).
+}
+\]
+
+In this notation the physical meaning of $\Gamma_I$ becomes more precise:
+\statementbox{$\Gamma_I$ is not merely a number in an exponential, but the coefficient of the generator of open quantum dynamics of geometric alternatives.}
+
+At the same time the model preserves its phenomenological status: the operator $L_I$ is not derived in this version from a full microscopic theory, but defines the minimal effective generator compatible with complete positivity, trace preservation, and the interface interpretation of structuring.
+
+\section{Explicit calculation: \texorpdfstring{$\chi_I(\tau)\Rightarrow\Gamma_I(\tau)\Rightarrow\eta_I(\tau)$}{chi to Gamma to eta}}
+
+To make the relation between the interface field and the structuring rate not only formal, introduce a minimal one-dimensional example. Let in the reduced cosmological model the interface field depend only on the evolution parameter $\tau$:
+\[
+\boxed{
+\chi_I(\tau)=\chi_0 e^{-m\tau},
+\qquad
+m>0.
+}
+\]
+Then
+\[
+\dot\chi_I(\tau)=-m\chi_0e^{-m\tau},
+\qquad
+\dot\chi_I^2(\tau)=m^2\chi_0^2e^{-2m\tau}.
+\]
+In the minimal flat reduced model, where the main interface correction is defined by the kinetic term of the field, one may take
+\[
+\boxed{
+\Gamma_I(\tau)
+=
+\Gamma_0+
+\lambda_\chi m^2\chi_0^2e^{-2m\tau}.
+}
+\]
+Here $\Gamma_0\ge0$ is the background effective decoherence rate, and the second term is the interface correction, which vanishes as the field decays.
+
+The accumulated coherence-suppression coefficient is then
+\[
+\eta_I(\tau)
+=
+\exp\left(-\int_0^\tau\Gamma_I(s)ds\right).
+\]
+Substituting $\Gamma_I(s)$ gives
+\[
+\int_0^\tau\Gamma_I(s)ds
+=
+\Gamma_0\tau
++
+\lambda_\chi m^2\chi_0^2
+\int_0^\tau e^{-2ms}ds.
+\]
+Since
+\[
+\int_0^\tau e^{-2ms}ds
+=
+\frac{1-e^{-2m\tau}}{2m},
+\]
+we obtain the explicit formula
+\[
+\boxed{
+\eta_I(\tau)
+=
+\exp\left[
+-\Gamma_0\tau
+-
+\frac{\lambda_\chi m\chi_0^2}{2}
+\left(1-e^{-2m\tau}\right)
+\right].
+}
+\]
+Therefore the off-diagonal element of the geometric density matrix is suppressed as
+\[
+\boxed{
+\rho_{12}(\tau)
+=
+\eta_I(\tau)\rho_{12}(0).
+}
+\]
+
+This example shows how the field $\chi_I$ can generate a nonstationary rate of interface structuring. As $\tau\to\infty$, the interface correction saturates, while further suppression is determined by the background part $\Gamma_0$:
+\[
+\boxed{
+\eta_I(\tau)
+\sim
+\exp\left(-\Gamma_0\tau-\frac{\lambda_\chi m\chi_0^2}{2}\right).
+}
+\]
+If $\Gamma_0=0$, the interface field gives a finite accumulated suppression factor; if $\Gamma_0>0$, coherence continues to decay exponentially.
+
+\statementbox{In this toy calculation the chain $\chi_I\Rightarrow\Gamma_I\Rightarrow\eta_I$ becomes explicit: the dynamics of the interface field defines a time-dependent rate of suppressing geometric coherence.}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.82\linewidth]{tmi_qg_eta_plot.pdf}
+    \caption{Example of the accumulated coherence suppression $\eta_I(\tau)$ for the toy model $\chi_I(\tau)=\chi_0e^{-m\tau}$. The plot shows how the interface part quickly produces finite suppression, while the background rate $\Gamma_0$, when nonzero, continues to decrease coherence at large $\tau$.}
+    \label{fig:eta-interface}
+\end{figure}
+
+\section{First computable model: minisuperspace}
+
+To avoid the unresolved problem of a full measure on the entire space of geometries $\Gspace$, one may introduce the first computable model: a minisuperspace restriction. Consider the homogeneous and isotropic Friedmann--Robertson--Walker metric:
+\[
+\boxed{
+ds^2
+=
+-N(t)^2dt^2
++
+a(t)^2 d\Sigma_k^2.
+}
+\]
+
+Here $a(t)$ is the scale factor, $N(t)$ is the lapse function, and $d\Sigma_k^2$ is the metric of a three-dimensional space of constant curvature $k\in\{-1,0,1\}$.
+
+In this model the space of geometries is reduced:
+\[
+\boxed{
+\Gspace
+\longrightarrow
+\Gspace_{\mathrm{mini}}
+:=
+\mathbb R_+,
+\qquad
+g\longmapsto a.
+}
+\]
+
+The Hilbert space of geometric possibilities becomes an ordinary function space:
+\[
+\boxed{
+\Hilb_G^{\mathrm{mini}}
+=
+L^2(\mathbb R_+,\mu(a)\,da).
+}
+\]
+
+In the minimal toy model one can explicitly fix the simplest measure:
+\[
+\boxed{
+\mu(a)=1,
+\qquad
+\Hilb_G^{\mathrm{mini}}=L^2(\mathbb R_+,da).
+}
+\]
+A more general effective measure may be written as
+\[
+\boxed{
+\mu(a)=a^p,
+\qquad
+p\in\mathbb R,
+}
+\]
+where the parameter $p$ may encode the chosen factor ordering, a reduction from the full geometric measure, or a phenomenological normalization. In this version, unless stated otherwise, the numerical toy example uses the minimal choice $\mu(a)=1$.
+
+The quantum state of geometry becomes
+\[
+\boxed{
+\Psi_G[g]
+\longrightarrow
+\Psi(a),
+\qquad
+\int_0^\infty |\Psi(a)|^2\mu(a)\,da=1.
+}
+\]
+
+The distribution of possible geometries is
+\[
+\boxed{
+d\Prob_G(a)=|\Psi(a)|^2\mu(a)\,da.
+}
+\]
+
+As a minimal quantum-cosmological equation one may introduce the minisuperspace form of the Wheeler--DeWitt equation:
+\[
+\boxed{
+\widehat{\mathcal H}_{\mathrm{mini}}\Psi(a)=0.
+}
+\]
+It expresses a quantum constraint for the geometric wave function $\Psi(a)$. In this version no single factor ordering of the operator $\widehat{\mathcal H}_{\mathrm{mini}}$ is fixed; it is enough to fix its role as a constraint operator defining admissible quantum states of geometry in minisuperspace. Schematically one can write
+\[
+\boxed{
+\widehat{\mathcal H}_{\mathrm{mini}}
+=
+-\hbar^2 A(a)\frac{d^2}{da^2}
+-\hbar^2 B(a)\frac{d}{da}
++U_{\mathrm{mini}}(a),
+}
+\]
+where $A(a)$, $B(a)$, and $U_{\mathrm{mini}}(a)$ depend on the chosen cosmological model, matter, curvature $k$, and factor ordering.
+
+\subsection{Minimal scenario: \texorpdfstring{$k=0$, $\Lambda\neq0$}{k=0, Lambda nonzero}}
+
+For the first physically concrete version one may choose a flat FRW model with a cosmological constant:
+\[
+\boxed{
+k=0,
+\qquad
+\Lambda\neq0.
+}
+\]
+
+In this reduction the minisuperspace potential can be written in the model form
+\[
+\boxed{
+U_{\mathrm{mini}}(a)
+=
+U_\Lambda(a)+U_{\mathrm{m}}(a),
+}
+\]
+where $U_\Lambda(a)$ encodes the contribution of the cosmological constant, and $U_{\mathrm{m}}(a)$ is the effective contribution of matter or of a chosen clock field. Without fixing the factor ordering one may use the working operator
+\[
+\boxed{
+\widehat{\mathcal H}_{\mathrm{mini}}
+=
+-\hbar^2\frac{d^2}{da^2}
++U_{\mathrm{mini}}(a).
+}
+\]
+
+Then admissible geometric wave functions are defined by
+\[
+\boxed{
+\left[-\hbar^2\frac{d^2}{da^2}+U_{\mathrm{mini}}(a)\right]\Psi(a)=0.
+}
+\]
+
+This expression does not claim the uniquely correct factor ordering and does not replace full quantum cosmology. Its task is to provide a minimal arena in which the wave packets $\psi_1(a),\psi_2(a)$, the interface field $\chi_I(t)$, and the coherence-suppression rate $\Gamma_I$ can be explicitly connected.
+
+The interface field in the simplest cosmological version is also reduced to a function of time:
+\[
+\boxed{
+\chi_I(x)
+\longrightarrow
+\chi_I(t).
+}
+\]
+
+Then the interface transition takes the computable form
+\[
+\boxed{
+\Psi(a)
+\Rightarrow
+\Prob_G(a)
+\Rightarrow
+\mathcal E_{\chi_I(t)}
+\Rightarrow
+ a_{\Eff}.
+}
+\]
+
+The effective scale factor can be defined as the average over the structured state:
+\[
+\boxed{
+a_{\Eff}
+:=
+\Tr(\rho_G'\,\widehat a),
+\qquad
+\rho_G'=\mathcal E_{\chi_I}(\rho_G).
+}
+\]
+
+In the discrete model:
+\[
+\boxed{
+a_{\Eff}
+=
+\sum_i p_i' a_i,
+\qquad
+p_i'=\langle a_i|\rho_G'|a_i\rangle.
+}
+\]
+
+Thus the first computable version of TMI-QG has the form
+\[
+\boxed{
+\begin{gathered}
+\text{superposition of scale factors}\\
+\longrightarrow\\
+\text{interface structuring}\\
+\longrightarrow\\
+\text{effective cosmological geometry}
+\end{gathered}
+}
+\]
+
+This model does not solve full quantum gravity, but it creates a minimal arena for calculations: one can study how $\chi_I(t)$, $J_I(a,\Psi)$, and $\Gamma_I(a,\chi_I)$ influence the transition from $\Psi(a)$ to $a_{\Eff}$.
+
+\subsection{Relation of the two-state model to the wave function \texorpdfstring{$\Psi(a)$}{Psi(a)}}
+
+The two-state example should not be understood as an arbitrary replacement of a continuous wave function. It can be obtained as an effective approximation if the wave function of the scale factor has two well-distinguishable localized components:
+\[
+\boxed{
+\Psi(a)=c_1\psi_1(a)+c_2\psi_2(a),
+\qquad
+\|\psi_1\|=\|\psi_2\|=1.
+}
+\]
+Here $\psi_1(a)$ is concentrated near $a_1$, and $\psi_2(a)$ near $a_2$:
+\[
+\boxed{
+\supp(\psi_1)\approx a_1,
+\qquad
+\supp(\psi_2)\approx a_2,
+\qquad
+\langle\psi_1|\psi_2\rangle\approx0.
+}
+\]
+Then the subspace
+\[
+\boxed{
+\Hilb_2:=\mathrm{span}\{\psi_1,\psi_2\}
+}
+\]
+can be identified with a two-level model of geometric alternatives:
+\[
+\boxed{
+|a_1\rangle\equiv\psi_1(a),
+\qquad
+|a_2\rangle\equiv\psi_2(a).
+}
+\]
+In this sense the discrete model is not a separate ontology, but an effective coarse-grained reduction of the continuous state $\Psi(a)$ to two distinguishable geometric packets.
+
+\subsection{Two-state example}
+
+For the first explicit calculation, restrict minisuperspace to two geometric alternatives:
+\[
+|a_1\rangle,
+\qquad
+|a_2\rangle.
+\]
+Let the initial state of the scale factor be
+\[
+\boxed{
+|\Psi\rangle
+=
+c_1|a_1\rangle+c_2|a_2\rangle,
+\qquad
+|c_1|^2+|c_2|^2=1.
+}
+\]
+Then the initial density matrix is
+\[
+\rho_G
+=
+\begin{pmatrix}
+|c_1|^2 & c_1\overline{c_2}\\
+c_2\overline{c_1} & |c_2|^2
+\end{pmatrix}.
+\]
+Applying the pure-decoherence channel from the previous section gives
+\[
+\boxed{
+\rho_G'(\tau)
+=
+\begin{pmatrix}
+|c_1|^2 & \eta_I(\tau)c_1\overline{c_2}\\
+\eta_I(\tau)c_2\overline{c_1} & |c_2|^2
+\end{pmatrix}.
+}
+\]
+When $\eta_I(\tau)\to0$, coherence between $|a_1\rangle$ and $|a_2\rangle$ is effectively suppressed. For a constant rate this corresponds to $\Gamma_I\tau\gg1$:
+\[
+\rho_G'(\tau)
+\longrightarrow
+\begin{pmatrix}
+|c_1|^2 & 0\\
+0 & |c_2|^2
+\end{pmatrix}.
+\]
+
+It is important to distinguish two objects.
+
+The first object is the registered result:
+\[
+\boxed{
+a_{\mathrm{reg}}\in\{a_1,a_2\},
+\qquad
+\Prob(a_{\mathrm{reg}}=a_k)=p_k'=
+\langle a_k|\rho_G'|a_k\rangle.
+}
+\]
+It corresponds to one realized geometric alternative in an act of registration.
+
+The second object is the effective average, or coarse-grained classical quantity:
+\[
+\boxed{
+a_{\Eff}
+=
+\Tr(\rho_G'\widehat a)
+=
+p_1'a_1+p_2'a_2.
+}
+\]
+If the pure-decoherence channel does not change diagonal probabilities, then
+\[
+\boxed{
+a_{\Eff}
+=
+|c_1|^2a_1+|c_2|^2a_2.
+}
+\]
+Thus $a_{\mathrm{reg}}$ denotes a single registered alternative, whereas $a_{\Eff}$ denotes an effective average description after coherence suppression. These two levels must not be conflated: one concerns an event of registration, the other an effective classical geometry.
+
+\subsection{Numerical toy example}
+
+Take the minimal calibration through a relative fluctuation of the scale factor:
+\[
+\boxed{
+a_1=1,
+\qquad
+\delta a=1,
+\qquad
+a_2=a_1+\delta a=2,
+\qquad
+|c_1|^2=0.7,
+\qquad
+|c_2|^2=0.3.
+}
+\]
+Here $a_1$ defines the chosen unit of scale, and $\delta a$ is the relative difference of the second geometric alternative. Then
+\[
+\boxed{
+a_{\Eff}=0.7\cdot a_1+0.3\cdot(a_1+\delta a)=a_1+0.3\delta a=1.3.
+}
+\]
+In the general two-state case
+\[
+\boxed{
+a_{\Eff}=a_1+|c_2|^2\delta a.
+}
+\]
+If, for simplicity, $c_1=\sqrt{0.7}$ and $c_2=\sqrt{0.3}$, then the initial magnitude of the off-diagonal element is
+\[
+\boxed{
+|\rho_{12}(0)|=\sqrt{0.7\cdot0.3}\approx0.458.
+}
+\]
+After interface decoherence:
+\[
+\boxed{
+|\rho_{12}(\tau)|=\eta_I(\tau)\sqrt{0.21}.
+}
+\]
+For a constant rate $\Gamma_I=\mathrm{const}$ one obtains $\eta_I=e^{-\Gamma_I\tau}$. For example:
+\[
+\begin{array}{c|c|c}
+\Gamma_I\tau & e^{-\Gamma_I\tau} & |\rho_{12}(\tau)| \\
+\hline
+0 & 1 & 0.458 \\
+1 & 0.368 & 0.169 \\
+3 & 0.050 & 0.023 \\
+5 & 0.007 & 0.003
+\end{array}
+\]
+This toy example shows the physical meaning of the parameter $\Gamma_I$: as the accumulated quantity $\int_0^\tau\Gamma_I(s)ds$ grows, geometric coherence is rapidly suppressed, while the diagonal probabilities $0.7$ and $0.3$ are preserved. Therefore interface structuring is not an arbitrary selection of a result; it defines a transition from superpositional coherence to a statistically interpretable mixture of geometric alternatives.
+
+\section{What exactly is the new hypothesis of TMI-QG}
+
+It is important to separate standard mathematical elements from the new hypothesis of TMI-QG. Quantum channels, decoherence, density matrices, minisuperspace, and the Wheeler--DeWitt equation already exist in known formalisms of quantum theory, open quantum systems, and quantum cosmology. Therefore the novelty of this version does not consist in reintroducing decoherence or reformulating minisuperspace.
+
+The new hypothesis consists in the chain
+\[
+\boxed{
+\chi_I
+\Rightarrow
+\Gamma_I
+\Rightarrow
+\mathcal E_{\chi_I}
+\Rightarrow
+\rho_G'
+\Rightarrow
+ g_{\Eff}.
+}
+\]
+That is, the physical interface field $\chi_I$ is treated as a structuring layer that defines the rate of suppression of geometric coherence, parameterizes the quantum channel, and thereby participates in the transition from geometric uncertainty to effective classical geometry.
+
+In the shortest form the new TMI-QG hypothesis is:
+\statementbox{The interface field does not merely accompany geometry; it parameterizes the structuring of quantum geometry.}
+
+Therefore the standard elements serve as the mathematical language, while the new physical claim of TMI-QG is that the channel of geometry structuring has an interface nature:
+\statementbox{The channel $\mathcal E_{\chi_I}$ is not an external observation procedure, but an effective manifestation of the physical interface layer.}
+
+This formulation preserves caution: TMI-QG-1.0 draft does not announce a completed quantum gravity, but defines a testable research program. Its further task is to derive or constrain $\Gamma_I$ from the dynamics of $\chi_I$, and then to compare the model's predictions with known limits of quantum cosmology, semiclassical gravity, and decoherence theory.
+
+\section{What the model does not claim}
+
+For publication clarity it is important to separate the positive TMI-QG hypothesis from claims that this version does not make. Version TMI-QG-1.0 draft should not be read as a completed solution to all problems of quantum gravity. Its status is that of a minimal phenomenological and computable model of interface structuring of quantum geometry.
+
+In particular, this version does not claim:
+\begin{enumerate}[leftmargin=2em]
+    \item that a full measure $\mu_G$ has been constructed on the whole space of geometries $\Gspace$;
+    \item that the problem of time in quantum gravity has been solved;
+    \item that decoherence by itself solves the problem of selecting a unique result;
+    \item that $\Gamma_I$ has already been fundamentally derived from a microscopic action;
+    \item that the minisuperspace model exhausts all geometric degrees of freedom;
+    \item that TMI-QG replaces existing approaches to quantum gravity.
+\end{enumerate}
+
+The positive claim of the version is much narrower:
+\statementbox{TMI-QG-1.0 draft proposes an effective interface-field mechanism in which $\chi_I$ parameterizes the rate of geometric decoherence, and the channel $\mathcal E_{\chi_I}$ describes the transition from quantum geometric coherence to effective structure.}
+
+\section{Relation to existing physical-mathematical formalisms}
+
+TMI-QG-1.0 draft uses several known mathematical languages as tools, but is not fully identified with them.
+
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{The Wheeler--DeWitt equation and quantum cosmology~\cite{DeWitt1967,Wheeler1968,Kiefer2012}.} The minisuperspace part of the document uses the standard idea of the quantum constraint
+    \[
+    \widehat{\mathcal H}_{\mathrm{mini}}\Psi(a)=0,
+    \]
+    but the new hypothesis is not the equation itself; it is the addition of an interface mechanism for structuring geometric alternatives.
+
+    \item \textbf{Open quantum systems~\cite{Lindblad1976,Kraus1983}.} Kraus operators and the Lindblad generator are used as standard languages for completely positive dynamics and decoherence. The new part of TMI-QG is the interpretation of the channel parameters as functions of the interface field:
+    \[
+    \chi_I\Rightarrow\Gamma_I\Rightarrow\mathcal E_{\chi_I}.
+    \]
+
+    \item \textbf{Decoherence~\cite{Zurek2003,Joos2003}.} The model does not claim that decoherence is introduced into quantum gravity for the first time. It claims more narrowly that geometric decoherence may be parameterized by an interface field that defines the distinction structure among geometric alternatives.
+
+    \item \textbf{Semiclassical gravity~\cite{BirrellDavies1982}.} In the limit of suppressed geometric coherence an effective geometry $g_{\Eff}$ appears, which allows the usual equations for a classical metric to be regarded as a limiting description.
+
+    \item \textbf{Summation over geometries.} The formal expression through $\int_{\Gspace}\D g$ is close in spirit to summation over geometries, but TMI-QG emphasizes not the full measure, but the interface transition from a distribution of geometries to an effective structure.
+\end{enumerate}
+
+Final position:
+\statementbox{TMI-QG-1.0 draft does not replace existing approaches, but proposes an interface layer linking quantum geometric uncertainty, decoherence, and the emergence of an effective classical structure.}
+
+\section{Domain of applicability}
+
+This version has a limited domain of applicability. It does not describe the full space of all geometric degrees of freedom and does not replace a completed theory of quantum gravity. Its natural status is an effective phenomenological scheme in minisuperspace and in finite-dimensional coarse-grained subspaces of geometric alternatives.
+
+Main limits of applicability:
+\begin{enumerate}[leftmargin=2em]
+    \item The model works most reliably in the reduced domain
+    \[
+    \boxed{
+    \Gspace_{\mathrm{mini}}=\mathbb R_+,
+    }
+    \]
+    where the geometric degree of freedom is represented by the scale factor $a$.
+
+    \item The two-state example should be understood as an effective approximation of two well-distinguishable wave packets, not as a claim that spacetime is fundamentally two-state.
+
+    \item The parameter $\Gamma_I$ is an effective reconstructible parameter. It can be connected with observable consequences only through coherence suppression, channel parameters, wave-packet widths, or other physical effects.
+
+    \item The formula for $\Gamma_I$ is a minimal ansatz. It must either be derived from a more fundamental action or constrained by experimental, cosmological, or mathematical conditions.
+
+    \item The full measure $\mu_G$ on the space of geometries $\Gspace$ is not constructed in this version. Instead the minimal minisuperspace measure $\mu(a)=1$ or the parametric family $\mu(a)=a^p$ is used.
+\end{enumerate}
+
+Therefore the most precise formulation of the version's status is:
+\statementbox{TMI-QG-1.0 draft is a minimal phenomenological model of interface structuring of quantum geometry in a reduced space of geometric alternatives with an explicit Lindblad generator and a concrete minisuperspace scenario.}
+
+\section{Main results of version TMI-QG-1.0 draft}
+
+Version TMI-QG-1.0 draft fixes the following results:
+\begin{enumerate}[leftmargin=2em]
+    \item Quantum geometry is described as a distribution over a space of geometric alternatives, reduced in the minimal model to minisuperspace $\mathbb R_+$.
+    \item The physical interface field $\chi_I$ defines not geometry directly, but an effective rate of structuring geometric coherence.
+    \item In the standard linear regime the decoherence rate is written as $\Gamma_I[\chi_I,g;\theta]$, where $\theta$ fixes the parameters of the reduced description.
+    \item The structuring channel can be defined as a CPTP pure-decoherence channel or as a Lindblad generator with operator $L_I=\sqrt{\Gamma_I/2}\,\sigma_z$.
+    \item For off-diagonal elements of the geometric density matrix one obtains the law
+    \[
+    \rho_{12}(\tau)
+    =
+    \exp\left(-\int_0^\tau\Gamma_I(s)ds\right)\rho_{12}(0).
+    \]
+    \item The toy calculation with $\chi_I(\tau)=\chi_0e^{-m\tau}$ shows the explicit chain
+    \[
+    \chi_I(\tau)
+    \Rightarrow
+    \Gamma_I(\tau)
+    \Rightarrow
+    \eta_I(\tau)
+    \Rightarrow
+    \rho_G'(\tau).
+    \]
+    \item The new TMI-QG hypothesis consists not in reintroducing decoherence, but in the claim that geometric decoherence is parameterized by a physical interface layer.
+\end{enumerate}
+
+The final formula of the version is
+\[
+\boxed{
+S_I
+\Rightarrow
+\chi_I(\tau)
+\Rightarrow
+\Gamma_I(\tau)
+\Rightarrow
+\mathcal E_{\chi_I}
+\Rightarrow
+\rho_G'
+\Rightarrow
+ g_{\Eff}.
+}
+\]
+
+\section{Open tasks}
+
+For this scheme to become a full physical theory, the following tasks must be solved:
+\begin{enumerate}[leftmargin=2em]
+    \item Construct or explicitly restrict the measure $\mu_G$ on the full space of geometries $\Gspace$.
+    \item Study the minimal minisuperspace measures $\mu(a)=1$ and $\mu(a)=a^p$, and connect the parameter $p$ with factor ordering or effective reduction of the full geometric measure.
+    \item Develop the minisuperspace model $\Gspace_{\mathrm{mini}}=\mathbb R_+$ beyond the two-state approximation.
+    \item Connect the two-state example with concrete solutions or approximate wave packets $\psi_1(a),\psi_2(a)$ of the Wheeler--DeWitt equation.
+    \item Derive the channel parameters $\mathcal E_{\chi_I}$ and the effective parameter $\Gamma_I$ from a more fundamental dynamics of the field $\chi_I$.
+    \item Clarify the decomposition $\Gamma_I=\Gamma_0+\delta\Gamma[\chi_I,g;\theta]$ and the physical meaning of the background part $\Gamma_0$.
+    \item Study the dynamical form $\eta_I(\tau)=\exp(-\int_0^\tau\Gamma_I(s)ds)$ for nonstationary interface regimes.
+    \item Clarify the physical dimensions of $\chi_I$, $J_I$, $\Gamma_I$, and all coupling constants.
+    \item Check the limiting cases:
+    \[
+    T_{\mu\nu}^{(I)}\to0,
+    \qquad
+    \Gamma_I\to0,
+    \qquad
+    \Gamma_I\to\infty.
+    \]
+    \item Compare the model with known approaches: semiclassical gravity, quantum cosmology, decoherence, loop quantum gravity, and summation over geometries.
+\end{enumerate}
+
+\section{Conclusion}
+
+Quantum gravity in the cautious interface form of TMI is defined as the transition:
+\statementbox{Geometric uncertainty $\longrightarrow$ distribution of possible geometries\\[0.2em]
+$\longrightarrow$ interface structuring $\longrightarrow$ effective spacetime.}
+
+Main formula:
+\[
+\boxed{
+\Gspace
+\Rightarrow
+\Psi_G[g]
+\Rightarrow
+\Prob_G(g)
+\Rightarrow
+I_G
+\Rightarrow
+ g_{\Eff}.
+}
+\]
+
+In short:
+\statementbox{Quantum gravity in TMI is the interface transition from uncertainty of geometry to the structure of spacetime.}
+
+Version TMI-QG-1.0 draft takes the next step: it adds an effective relation $S_I\to\Gamma_I$, introduces the Lindblad generator of interface decoherence, concretizes the minimal minisuperspace scenario $k=0$, $\Lambda\neq0$, and explicitly connects the model with existing formalisms of quantum cosmology, open quantum systems, and decoherence. The final computable chain becomes
+\[
+\boxed{
+\Psi(a)
+\Rightarrow
+\Prob_G(a)
+\Rightarrow
+\mathcal E_{\chi_I(t)}
+\Rightarrow
+\rho_G'
+\Rightarrow
+\{a_{\mathrm{reg}},a_{\Eff}\}.
+}
+\]
+
+\begin{thebibliography}{99}
+
+\bibitem{DeWitt1967}
+B.~S.~DeWitt.
+\newblock Quantum theory of gravity. I. The canonical theory.
+\newblock \emph{Physical Review}, 160, 1113--1148, 1967.
+
+\bibitem{Wheeler1968}
+J.~A.~Wheeler.
+\newblock Superspace and the nature of quantum geometrodynamics.
+\newblock In C.~M.~DeWitt and J.~A.~Wheeler, editors, \emph{Battelle Rencontres: 1967 Lectures in Mathematics and Physics}. Benjamin, 1968.
+
+\bibitem{Kiefer2012}
+C.~Kiefer.
+\newblock \emph{Quantum Gravity}.
+\newblock Oxford University Press, 3rd edition, 2012.
+
+\bibitem{Lindblad1976}
+G.~Lindblad.
+\newblock On the generators of quantum dynamical semigroups.
+\newblock \emph{Communications in Mathematical Physics}, 48, 119--130, 1976.
+
+\bibitem{Kraus1983}
+K.~Kraus.
+\newblock \emph{States, Effects, and Operations: Fundamental Notions of Quantum Theory}.
+\newblock Springer, 1983.
+
+\bibitem{Zurek2003}
+W.~H.~Zurek.
+\newblock Decoherence, einselection, and the quantum origins of the classical.
+\newblock \emph{Reviews of Modern Physics}, 75, 715--775, 2003.
+
+\bibitem{Joos2003}
+E.~Joos, H.~D.~Zeh, C.~Kiefer, D.~Giulini, J.~Kupsch, and I.-O.~Stamatescu.
+\newblock \emph{Decoherence and the Appearance of a Classical World in Quantum Theory}.
+\newblock Springer, 2nd edition, 2003.
+
+\bibitem{BirrellDavies1982}
+N.~D.~Birrell and P.~C.~W.~Davies.
+\newblock \emph{Quantum Fields in Curved Space}.
+\newblock Cambridge University Press, 1982.
+
+\bibitem{HartleHawking1983}
+J.~B.~Hartle and S.~W.~Hawking.
+\newblock Wave function of the Universe.
+\newblock \emph{Physical Review D}, 28, 2960--2975, 1983.
+
+\end{thebibliography}
+
+\end{document}
